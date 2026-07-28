@@ -4,7 +4,7 @@
     "slug": "mitri",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/ecuador_logo.png",
+    "icon": "./assets/images/Escudo_Nacional_de_España.png",
     "scheme": "mitri",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -14,20 +14,20 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#FFD100",
-        "foregroundImage": "./assets/images/ecuador_logo.png"
+        "foregroundImage": "./assets/images/Escudo_Nacional_de_España.png"
       },
       "edgeToEdgeEnabled": true
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/images/ecuador_logo.png"
+      "favicon": "./assets/images/Escudo_Nacional_de_España.png"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/ecuador_logo.png",
+          "image": "./assets/images/Escudo_Nacional_de_España.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#FFD100",
