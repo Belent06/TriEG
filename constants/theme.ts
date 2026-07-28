@@ -1,41 +1,72 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
- */
-
 import { Platform } from 'react-native';
-
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
 
 export const Colors = {
   light: {
-    text: '#11181C',
-    background: '#fff',
-    tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
+    text: '#002B49',
+    background: '#F8FAFC',
+    tint: '#002B49',
+    icon: '#475569',
+    tabIconDefault: '#64748B',
+    tabIconSelected: '#002B49',
+    yellow: '#FFD100',
+    blue: '#002B49',
+    red: '#CE1126',
+    card: '#FFFFFF',
+    cardBorder: '#E2E8F0',
+    subtext: '#475569',
   },
   dark: {
-    text: '#ECEDEE',
-    background: '#151718',
-    tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
-    tabIconSelected: tintColorDark,
+    text: '#FFFFFF',
+    background: '#0B132B',
+    tint: '#FFD100',
+    icon: '#94A3B8',
+    tabIconDefault: '#64748B',
+    tabIconSelected: '#FFD100',
+    yellow: '#FFD100',
+    blue: '#1C2541',
+    red: '#E63946',
+    card: '#1C2541',
+    cardBorder: '#3A5A40',
+    subtext: '#94A3B8',
+  },
+};
+
+export const AppTheme = {
+  colors: {
+    yellow: '#FFD100',
+    navy: '#002B49',
+    red: '#CE1126',
+    white: '#FFFFFF',
+    darkBg: '#0A192F',
+    cardBg: '#112240',
+    textMain: '#002B49',
+    textMuted: '#64748B',
+    goldGradient: ['#FFD100', '#FFA000'],
+    navyGradient: ['#002B49', '#001427'],
+  },
+  shadows: {
+    small: {
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 4,
+      elevation: 2,
+    },
+    medium: {
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.15,
+      shadowRadius: 8,
+      elevation: 4,
+    },
   },
 };
 
 export const Fonts = Platform.select({
   ios: {
-    /** iOS `UIFontDescriptorSystemDesignDefault` */
     sans: 'system-ui',
-    /** iOS `UIFontDescriptorSystemDesignSerif` */
     serif: 'ui-serif',
-    /** iOS `UIFontDescriptorSystemDesignRounded` */
     rounded: 'ui-rounded',
-    /** iOS `UIFontDescriptorSystemDesignMonospaced` */
     mono: 'ui-monospace',
   },
   default: {
