@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export type TabType = 'mundiales' | 'records' | 'plantilla';
 
@@ -19,7 +19,7 @@ export const NavTabs: React.FC<NavTabsProps> = ({ activeTab, onSelectTab }) => {
         style={[styles.navTab, activeTab === 'mundiales' && styles.navTabActive]}
         onPress={() => onSelectTab('mundiales')}>
         <Text style={[styles.navTabText, activeTab === 'mundiales' && styles.navTabTextActive]}>
-          🏆 Copas del Mundo
+          🏆 Home
         </Text>
       </TouchableOpacity>
 
@@ -27,7 +27,7 @@ export const NavTabs: React.FC<NavTabsProps> = ({ activeTab, onSelectTab }) => {
         style={[styles.navTab, activeTab === 'records' && styles.navTabActive]}
         onPress={() => onSelectTab('records')}>
         <Text style={[styles.navTabText, activeTab === 'records' && styles.navTabTextActive]}>
-          ⭐ Récords
+          ⭐ España
         </Text>
       </TouchableOpacity>
 
@@ -35,7 +35,7 @@ export const NavTabs: React.FC<NavTabsProps> = ({ activeTab, onSelectTab }) => {
         style={[styles.navTab, activeTab === 'plantilla' && styles.navTabActive]}
         onPress={() => onSelectTab('plantilla')}>
         <Text style={[styles.navTabText, activeTab === 'plantilla' && styles.navTabTextActive]}>
-          ⚽ Figuras
+          ⚽ Acerca de
         </Text>
       </TouchableOpacity>
     </View>

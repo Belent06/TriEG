@@ -1,31 +1,28 @@
 import React, { useState } from 'react';
 import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
   SafeAreaView,
+  ScrollView,
   StatusBar,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
 
-import { WORLD_CUPS, WorldCupData } from '@/data/team-info';
+import { WelcomeArgentinaCard } from '@/components/home/bienvenida-argentina';
 import { HeroBanner } from '@/components/home/hero-banner';
 import { NavTabs, TabType } from '@/components/home/nav-tabs';
+import { PlayersSection } from '@/components/home/players-section';
+import { RecordsSection } from '@/components/home/records-section';
 import { WorldCupCard } from '@/components/home/world-cup-card';
 import { WorldCupModal } from '@/components/home/world-cup-modal';
-import { RecordsSection } from '@/components/home/records-section';
-import { PlayersSection } from '@/components/home/players-section';
+import { WORLD_CUPS, WorldCupData } from '@/data/team-info';
 
 /**
  * Pantalla Principal (HomeScreen) de MiTri
- * Orquesta los componentes modulares para presentar la información
- * de la Selección Ecuatoriana de Fútbol de manera clara y limpia.
+ * Incluye mensaje de bienvenida, tarjeta de Argentina Subcampeón y pestañas de contenido.
  */
 export default function HomeScreen() {
-  // Estado para el mundial seleccionado en el modal
   const [selectedWorldCup, setSelectedWorldCup] = useState<WorldCupData | null>(null);
-
-  // Estado para la pestaña activa ('mundiales', 'records', 'plantilla')
   const [activeTab, setActiveTab] = useState<TabType>('mundiales');
 
   return (
@@ -35,6 +32,9 @@ export default function HomeScreen() {
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         {/* Banner Encabezado del Equipo */}
         <HeroBanner />
+
+        {/* Tarjeta de Bienvenida y Tarjeta de Argentina Subcampeón */}
+        <WelcomeArgentinaCard />
 
         {/* Pestañas de Navegación por Secciones */}
         <NavTabs activeTab={activeTab} onSelectTab={setActiveTab} />
@@ -63,7 +63,7 @@ export default function HomeScreen() {
         {/* Sección 3: Jugadores Referentes */}
         {activeTab === 'plantilla' && <PlayersSection />}
 
-        {/* Pie de Página de la Aplicación */}
+        {/* Pie de Página */}
         <View style={styles.footer}>
           <Text style={styles.footerTitle}>MiTri App 🇪🇨</Text>
           <Text style={styles.footerSub}>Tributo oficial a la Selección Ecuatoriana de Fútbol</Text>
