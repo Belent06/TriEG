@@ -8,70 +8,84 @@ import {
   SafeAreaView,
   StatusBar,
 } from 'react-native';
-import { TEAM_PROFILE } from '@/data/team-info';
 
+/**
+ * Pantalla Acerca de (ExploreScreen)
+ * Muestra la información del estudiante desarrollador, la materia y los créditos del proyecto.
+ */
 export default function ExploreScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle="light-content" backgroundColor="#002B49" />
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         
+        {/* Encabezado */}
         <View style={styles.header}>
-          <Image
-            source={require('@/assets/images/ecuador_logo.png')}
-            style={styles.headerLogo}
-            resizeMode="contain"
-          />
-          <Text style={styles.headerTitle}>Acerca de MiTri 🇪🇨</Text>
-          <Text style={styles.headerSubtitle}>Tributo a la Selección Ecuatoriana de Fútbol</Text>
+          <View style={styles.studentAvatarCircle}>
+            <Text style={styles.studentAvatarEmoji}>🎓</Text>
+          </View>
+          <Text style={styles.headerTitle}>Acerca del Desarrollador</Text>
+          <Text style={styles.headerSubtitle}>Perfil de Estudiante & Créditos del Proyecto</Text>
         </View>
 
+        {/* Tarjeta de Descripción del Estudiante */}
         <View style={styles.card}>
-          <Text style={styles.cardTitle}>Historia del Proyecto</Text>
+          <Text style={styles.cardTitle}>👤 Perfil del Estudiante</Text>
+          
+          <View style={styles.profileRow}>
+            <Text style={styles.profileLabel}>Estudiante:</Text>
+            <Text style={styles.profileValue}>María José</Text>
+          </View>
+
+          <View style={styles.profileRow}>
+            <Text style={styles.profileLabel}>Materia / Asignatura:</Text>
+            <Text style={styles.profileValue}>Dispositivos Móviles</Text>
+          </View>
+
+          <View style={styles.profileRow}>
+            <Text style={styles.profileLabel}>Carrera:</Text>
+            <Text style={styles.profileValue}>Ingeniería de Software / Sistemas</Text>
+          </View>
+
+          <View style={styles.profileRow}>
+            <Text style={styles.profileLabel}>Semestre / Nivel:</Text>
+            <Text style={styles.profileValue}>Desarrollo Móvil Avanzado</Text>
+          </View>
+
+          <View style={styles.bioContainer}>
+            <Text style={styles.bioTitle}>Biografía y Propósito:</Text>
+            <Text style={styles.bioText}>
+              Estudiante apasionada por la creación de soluciones móviles multiplataforma. Este proyecto representa la aplicación práctica de los conceptos de diseño de interfaces UI/UX, arquitectura modular y navegación avanzada en React Native con Expo SDK 54.
+            </Text>
+          </View>
+        </View>
+
+        {/* Tarjeta del Proyecto MiTri */}
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>📱 Proyecto MiTri App</Text>
           <Text style={styles.cardBody}>
-            <Text style={styles.boldText}>MiTri</Text> es una aplicación móvil desarrollada para los hinchas del fútbol ecuatoriano. Permite recordar y explorar los momentos más gloriosos de La Tri en las Copas Mundiales de la FIFA, desde su histórica clasificación en Corea-Japón 2002 hasta el camino rumbo al Mundial 2026.
+            <Text style={styles.boldText}>MiTri</Text> es una aplicación móvil concebida como tributo interactivo a las selecciones de fútbol internacional (Ecuador 🇪🇨, España 🇪🇸, Argentina 🇦🇷). 
+          </Text>
+          <Text style={[styles.cardBody, { marginTop: 8 }]}>
+            Permite explorar la historia mundialista, alineaciones, directores técnicos y estadísticas en una interfaz moderna y fluida.
           </Text>
         </View>
 
+        {/* Especificaciones Técnicas */}
         <View style={styles.card}>
-          <Text style={styles.cardTitle}>Simbolismo Tricolor</Text>
-          
-          <View style={styles.colorRow}>
-            <View style={[styles.colorDot, { backgroundColor: '#FFD100' }]} />
-            <View style={styles.colorInfo}>
-              <Text style={styles.colorName}>Amarillo Tricolor</Text>
-              <Text style={styles.colorDesc}>Representa el sol, la riqueza de nuestras tierras y la pasión de la hinchada.</Text>
-            </View>
-          </View>
-
-          <View style={styles.colorRow}>
-            <View style={[styles.colorDot, { backgroundColor: '#002B49' }]} />
-            <View style={styles.colorInfo}>
-              <Text style={styles.colorName}>Azul Marino</Text>
-              <Text style={styles.colorDesc}>Representa el Océano Pacífico y el cielo infinito sobre el país.</Text>
-            </View>
-          </View>
-
-          <View style={styles.colorRow}>
-            <View style={[styles.colorDot, { backgroundColor: '#CE1126' }]} />
-            <View style={styles.colorInfo}>
-              <Text style={styles.colorName}>Rojo Accent</Text>
-              <Text style={styles.colorDesc}>Simboliza la garra, el coraje y la sangre de nuestros guerreros en la cancha.</Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={styles.card}>
-          <Text style={styles.cardTitle}>Información Técnica</Text>
-          <Text style={styles.techText}>• Framework: React Native con Expo SDK 54</Text>
+          <Text style={styles.cardTitle}>🛠️ Especificaciones del Entorno</Text>
+          <Text style={styles.techText}>• Framework: React Native (Expo SDK 54)</Text>
           <Text style={styles.techText}>• Enrutamiento: Expo Router v6</Text>
-          <Text style={styles.techText}>• Lenguaje: TypeScript</Text>
-          <Text style={styles.techText}>• Plataforma: Android / iOS / Web via Expo Go</Text>
+          <Text style={styles.techText}>• Lenguaje: TypeScript (~95%)</Text>
+          <Text style={styles.techText}>• Componentes: Arquitectura Modular decoupled en components/</Text>
         </View>
 
+        {/* Pie de Página */}
         <View style={styles.footer}>
-          <Text style={styles.footerText}>¡Si Se Puede! 🇪🇨⚽</Text>
+          <Text style={styles.footerText}>Desarrollado con ❤️ para Dispositivos Móviles</Text>
+          <Text style={styles.footerSub}>2026 • Todos los Derechos Reservados</Text>
         </View>
+
       </ScrollView>
     </SafeAreaView>
   );
@@ -90,13 +104,26 @@ const styles = StyleSheet.create({
     backgroundColor: '#002B49',
     alignItems: 'center',
     paddingVertical: 28,
+    paddingHorizontal: 16,
     borderBottomLeftRadius: 24,
     borderBottomRightRadius: 24,
   },
-  headerLogo: {
-    width: 80,
-    height: 80,
+  studentAvatarCircle: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    backgroundColor: '#FFD100',
+    alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: 12,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 4,
+  },
+  studentAvatarEmoji: {
+    fontSize: 34,
   },
   headerTitle: {
     fontSize: 24,
@@ -126,42 +153,52 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '800',
     color: '#002B49',
-    marginBottom: 10,
+    marginBottom: 12,
+  },
+  profileRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 6,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F1F5F9',
+  },
+  profileLabel: {
+    fontSize: 13,
+    color: '#64748B',
+    fontWeight: '600',
+  },
+  profileValue: {
+    fontSize: 13,
+    color: '#002B49',
+    fontWeight: '800',
+  },
+  bioContainer: {
+    marginTop: 12,
+    backgroundColor: '#F8FAFC',
+    padding: 12,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+  },
+  bioTitle: {
+    fontSize: 13,
+    fontWeight: '800',
+    color: '#002B49',
+    marginBottom: 4,
+  },
+  bioText: {
+    fontSize: 13,
+    color: '#475569',
+    lineHeight: 19,
   },
   cardBody: {
     fontSize: 14,
     color: '#475569',
-    lineHeight: 22,
+    lineHeight: 21,
   },
   boldText: {
     fontWeight: '800',
     color: '#002B49',
-  },
-  colorRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 12,
-  },
-  colorDot: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    marginRight: 12,
-    borderWidth: 1,
-    borderColor: '#E2E8F0',
-  },
-  colorInfo: {
-    flex: 1,
-  },
-  colorName: {
-    fontSize: 14,
-    fontWeight: '700',
-    color: '#0F172A',
-  },
-  colorDesc: {
-    fontSize: 12,
-    color: '#64748B',
-    marginTop: 2,
   },
   techText: {
     fontSize: 13,
@@ -169,12 +206,17 @@ const styles = StyleSheet.create({
     marginVertical: 4,
   },
   footer: {
-    paddingVertical: 30,
+    paddingVertical: 28,
     alignItems: 'center',
   },
   footerText: {
-    fontSize: 18,
-    fontWeight: '900',
+    fontSize: 14,
+    fontWeight: '800',
     color: '#002B49',
+  },
+  footerSub: {
+    fontSize: 12,
+    color: '#64748B',
+    marginTop: 2,
   },
 });
