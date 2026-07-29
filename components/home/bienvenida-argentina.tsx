@@ -2,9 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
 /**
- * Componente BienvenidaArgentina
- * Sección 1: Mensaje de Bienvenida
- * Sección 2: Tarjeta de Subcampeón Argentina (Bandera, Director Técnico, Capitán y Final 1-2)
+* BienvenidaArgentina
  */
 export const WelcomeArgentinaCard: React.FC = () => {
   return (
@@ -18,6 +16,7 @@ export const WelcomeArgentinaCard: React.FC = () => {
       </View>
 
       {/* SECCIÓN 2: TARJETA DE SUBCAMPEÓN ARGENTINA */}
+
       <View style={styles.argentinaCard}>
         {/* Encabezado con Bandera y Título */}
         <View style={styles.argentinaHeaderRow}>
@@ -27,28 +26,39 @@ export const WelcomeArgentinaCard: React.FC = () => {
             <View style={styles.subcampeonBadge}>
               <Text style={styles.subcampeonText}>🥈 Subcampeón Mundial</Text>
             </View>
-          </View>
-        </View>
-
-        {/* Detalles de la Ficha: DT, Capitán y Final 1-2 */}
-        <View style={styles.argentinaDetailsGrid}>
-          <View style={styles.argDetailItem}>
-            <Text style={styles.argDetailKey}>📋 Director Técnico:</Text>
-            <Text style={styles.argDetailVal}>Lionel Scaloni</Text>
-          </View>
-
-          <View style={styles.argDetailItem}>
-            <Text style={styles.argDetailKey}>👑 Capitán:</Text>
-            <Text style={styles.argDetailVal}>Lionel Messi</Text>
-          </View>
-
-          <View style={styles.argDetailItem}>
-            <Text style={styles.argDetailKey}>⚽ Marcador Final:</Text>
-            <Text style={styles.finalScoreVal}>Final 1 - 2</Text>
+            <View style={styles.flagColorsContainer}>
+              <View style={styles.colorStripBlue}>
+                <Text style={styles.stripText}>AZUL CIELO</C></Text>
+            </View>
+            <View style={styles.colorStripWhite}>
+              <Text style={styles.stripTextDark}>BLANCO</Text>
+            </View>
+            <View style={styles.colorStripBlue}>
+              <Text style={styles.stripText}>AZUL CIELO</Text>
+            </View>
           </View>
         </View>
       </View>
+
+      {/* Detalles de la Ficha: DT, Capitán y Final 1-2 */}
+      <View style={styles.argentinaDetailsGrid}>
+        <View style={styles.argDetailItem}>
+          <Text style={styles.argDetailKey}>📋 Director Técnico:</Text>
+          <Text style={styles.argDetailVal}>Lionel Scaloni</Text>
+        </View>
+
+        <View style={styles.argDetailItem}>
+          <Text style={styles.argDetailKey}>👑 Capitán:</Text>
+          <Text style={styles.argDetailVal}>Lionel Messi</Text>
+        </View>
+
+        <View style={styles.argDetailItem}>
+          <Text style={styles.argDetailKey}>⚽ Marcador Final:</Text>
+          <Text style={styles.finalScoreVal}>Final 1 - 2</Text>
+        </View>
+      </View>
     </View>
+    </View >
   );
 };
 
