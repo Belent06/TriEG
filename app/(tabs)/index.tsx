@@ -1,80 +1,41 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
-  Text,
   View,
+  Text,
+  ScrollView,
+  SafeAreaView,
+  StatusBar,
 } from 'react-native';
 
 import { WelcomeArgentinaCard } from '@/components/home/bienvenida-argentina';
-import { HeroBanner } from '@/components/home/hero-banner';
-import { NavTabs, TabType } from '@/components/home/nav-tabs';
-import { PlayersSection } from '@/components/home/players-section';
-import { RecordsSection } from '@/components/home/records-section';
-import { WorldCupCard } from '@/components/home/world-cup-card';
-import { WorldCupModal } from '@/components/home/world-cup-modal';
-import { WORLD_CUPS, WorldCupData } from '@/data/team-info';
 
 /**
- * Pantalla Principal (HomeScreen) de MiTri
- * Incluye mensaje de bienvenida, tarjeta de Argentina Subcampeón y pestañas de contenido.
+ * Pantalla de Inicio (HomeScreen)
+ * Contiene únicamente 2 secciones:
+ * 1. Sección de Bienvenida
+ * 2. Tarjeta de Subcampeón Argentina (Bandera 🇦🇷, Director Técnico, Capitán y Final 1-2)
  */
 export default function HomeScreen() {
-  const [selectedWorldCup, setSelectedWorldCup] = useState<WorldCupData | null>(null);
-  const [activeTab, setActiveTab] = useState<TabType>('mundiales');
-
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle="light-content" backgroundColor="#002B49" />
 
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-        {/* Banner Encabezado del Equipo */}
-        <HeroBanner />
+        {/* Encabezado Superior */}
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>MiTri App ⚽</Text>
+          <Text style={styles.headerSubtitle}>Plataforma de Selecciones de Fútbol</Text>
+        </View>
 
-        {/* Tarjeta de Bienvenida y Tarjeta de Argentina Subcampeón */}
+        {/* Únicas 2 Secciones: Bienvenida + Tarjeta Subcampeón Argentina */}
         <WelcomeArgentinaCard />
-
-        {/* Pestañas de Navegación por Secciones */}
-        <NavTabs activeTab={activeTab} onSelectTab={setActiveTab} />
-
-        {/* Sección 1: Copas del Mundo */}
-        {activeTab === 'mundiales' && (
-          <View style={styles.sectionContainer}>
-            <View style={styles.sectionHeader}>
-              <Text style={styles.sectionTitle}>Historial Mundialista de La Tri</Text>
-              <Text style={styles.sectionSubtitle}>Toca una tarjeta para ver todos los detalles</Text>
-            </View>
-
-            {WORLD_CUPS.map((cup) => (
-              <WorldCupCard
-                key={cup.year}
-                cup={cup}
-                onPress={setSelectedWorldCup}
-              />
-            ))}
-          </View>
-        )}
-
-        {/* Sección 2: Récords e Historia */}
-        {activeTab === 'records' && <RecordsSection />}
-
-        {/* Sección 3: Jugadores Referentes */}
-        {activeTab === 'plantilla' && <PlayersSection />}
 
         {/* Pie de Página */}
         <View style={styles.footer}>
-          <Text style={styles.footerTitle}>MiTri App 🇪🇨</Text>
-          <Text style={styles.footerSub}>Tributo oficial a la Selección Ecuatoriana de Fútbol</Text>
+          <Text style={styles.footerText}>MiTri App 🇪🇨🇦🇷</Text>
         </View>
       </ScrollView>
-
-      {/* Ventana Modal con Detalle del Mundial Seleccionado */}
-      <WorldCupModal
-        selectedCup={selectedWorldCup}
-        onClose={() => setSelectedWorldCup(null)}
-      />
     </SafeAreaView>
   );
 }
@@ -88,35 +49,31 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F8FAFC',
   },
-  sectionContainer: {
+  header: {
+    backgroundColor: '#002B49',
+    alignItems: 'center',
+    paddingVertical: 20,
     paddingHorizontal: 16,
-    paddingTop: 16,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
-  sectionHeader: {
-    marginBottom: 14,
+  headerTitle: {
+    fontSize: 26,
+    fontWeight: '900',
+    color: '#FFD100',
   },
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: '800',
-    color: '#002B49',
-  },
-  sectionSubtitle: {
+  headerSubtitle: {
     fontSize: 13,
-    color: '#64748B',
+    color: '#94A3B8',
     marginTop: 2,
   },
   footer: {
     paddingVertical: 24,
     alignItems: 'center',
   },
-  footerTitle: {
-    fontSize: 16,
+  footerText: {
+    fontSize: 14,
     fontWeight: '800',
     color: '#002B49',
-  },
-  footerSub: {
-    fontSize: 12,
-    color: '#64748B',
-    marginTop: 2,
   },
 });

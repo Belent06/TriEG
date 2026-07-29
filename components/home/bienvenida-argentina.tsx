@@ -1,50 +1,50 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
 /**
- * Bienvenida Argentina
+ * Componente BienvenidaArgentina
+ * Sección 1: Mensaje de Bienvenida
+ * Sección 2: Tarjeta de Subcampeón Argentina (Bandera, Director Técnico, Capitán y Final 1-2)
  */
 export const WelcomeArgentinaCard: React.FC = () => {
   return (
     <View style={styles.container}>
-      {/* Tarjeta de Bienvenida */}
+      {/* SECCIÓN 1: BIENVENIDA */}
       <View style={styles.welcomeCard}>
         <Text style={styles.welcomeTitle}>👋 ¡Bienvenido a MiTri!</Text>
         <Text style={styles.welcomeBody}>
-          Explora la información de las selecciones de fútbol, mundiales, récords y figuras destacadas.
+          Tu aplicación sobre la Selección Ecuatoriana y grandes selecciones del fútbol mundial.
         </Text>
       </View>
 
-      {/* Tarjeta de Argentina (Subcampeón Mundial) */}
+      {/* SECCIÓN 2: TARJETA DE SUBCAMPEÓN ARGENTINA */}
       <View style={styles.argentinaCard}>
+        {/* Encabezado con Bandera y Título */}
         <View style={styles.argentinaHeaderRow}>
           <Text style={styles.flagEmoji}>🇦🇷</Text>
           <View style={styles.argentinaTitleBox}>
             <Text style={styles.argentinaTitle}>Selección Argentina</Text>
             <View style={styles.subcampeonBadge}>
-              <Text style={styles.subcampeonText}>🥈 Subcampeón Mundial (1930, 1990, 2014)</Text>
+              <Text style={styles.subcampeonText}>🥈 Subcampeón Mundial</Text>
             </View>
           </View>
         </View>
 
-        <Text style={styles.argentinaDesc}>
-          Reconocida históricamente por sus grandes hazañas mundialistas (Campeón 1978, 1986, 2022) y sus 3 subcampeonatos del mundo.
-        </Text>
-
+        {/* Detalles de la Ficha: DT, Capitán y Final 1-2 */}
         <View style={styles.argentinaDetailsGrid}>
           <View style={styles.argDetailItem}>
-            <Text style={styles.argDetailKey}>Director Técnico:</Text>
+            <Text style={styles.argDetailKey}>📋 Director Técnico:</Text>
             <Text style={styles.argDetailVal}>Lionel Scaloni</Text>
           </View>
 
           <View style={styles.argDetailItem}>
-            <Text style={styles.argDetailKey}>Capitán:</Text>
+            <Text style={styles.argDetailKey}>👑 Capitán:</Text>
             <Text style={styles.argDetailVal}>Lionel Messi</Text>
           </View>
 
           <View style={styles.argDetailItem}>
-            <Text style={styles.argDetailKey}>Confederación:</Text>
-            <Text style={styles.argDetailVal}>CONMEBOL</Text>
+            <Text style={styles.argDetailKey}>⚽ Marcador Final:</Text>
+            <Text style={styles.finalScoreVal}>Final 1 - 2</Text>
           </View>
         </View>
       </View>
@@ -55,100 +55,107 @@ export const WelcomeArgentinaCard: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
-    marginTop: 14,
+    paddingVertical: 16,
+    gap: 16,
   },
   welcomeCard: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 14,
-    padding: 16,
-    marginBottom: 12,
-    borderLeftWidth: 5,
+    borderRadius: 16,
+    padding: 20,
+    borderLeftWidth: 6,
     borderLeftColor: '#002B49',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 2,
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
+    elevation: 3,
   },
   welcomeTitle: {
-    fontSize: 18,
-    fontWeight: '800',
+    fontSize: 22,
+    fontWeight: '900',
     color: '#002B49',
-    marginBottom: 4,
+    marginBottom: 6,
   },
   welcomeBody: {
-    fontSize: 13,
+    fontSize: 14,
     color: '#475569',
-    lineHeight: 18,
+    lineHeight: 20,
   },
   argentinaCard: {
     backgroundColor: '#74ACDF',
-    borderRadius: 16,
-    padding: 16,
+    borderRadius: 18,
+    padding: 20,
     borderWidth: 1,
     borderColor: '#5296D5',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    elevation: 3,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.12,
+    shadowRadius: 8,
+    elevation: 4,
   },
   argentinaHeaderRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 12,
   },
   flagEmoji: {
-    fontSize: 34,
-    marginRight: 10,
+    fontSize: 42,
+    marginRight: 14,
   },
   argentinaTitleBox: {
     flex: 1,
   },
   argentinaTitle: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '900',
     color: '#002B49',
   },
   subcampeonBadge: {
     backgroundColor: '#FFFFFF',
     alignSelf: 'flex-start',
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-    borderRadius: 6,
-    marginTop: 3,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 8,
+    marginTop: 4,
   },
   subcampeonText: {
     color: '#002B49',
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: '800',
   },
-  argentinaDesc: {
-    fontSize: 12,
-    color: '#002B49',
-    marginTop: 6,
-    lineHeight: 16,
-    fontWeight: '500',
-  },
   argentinaDetailsGrid: {
-    marginTop: 12,
-    paddingTop: 10,
+    marginTop: 8,
+    paddingTop: 12,
     borderTopWidth: 1,
-    borderTopColor: 'rgba(0, 43, 73, 0.15)',
-    gap: 4,
+    borderTopColor: 'rgba(0, 43, 73, 0.2)',
+    gap: 8,
   },
   argDetailItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 10,
   },
   argDetailKey: {
-    fontSize: 12,
+    fontSize: 13,
     color: '#002B49',
-    fontWeight: '600',
+    fontWeight: '700',
   },
   argDetailVal: {
-    fontSize: 12,
+    fontSize: 14,
     color: '#002B49',
-    fontWeight: '800',
+    fontWeight: '900',
+  },
+  finalScoreVal: {
+    fontSize: 15,
+    color: '#CE1126',
+    fontWeight: '900',
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: 6,
   },
 });
