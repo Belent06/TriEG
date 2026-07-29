@@ -1,20 +1,16 @@
 import React from 'react';
 import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
   Image,
   SafeAreaView,
+  ScrollView,
   StatusBar,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
 
 /**
- * Pantalla de España (EspanaScreen)
- * Estructurada estrictamente en 3 secciones:
- * 1. Sección con la Bandera de España
- * 2. Sección con el Director Técnico
- * 3. Sección final con los Jugadores
+ * Pantalla de España
  */
 export default function EspanaScreen() {
   const jugadores = [
@@ -38,7 +34,7 @@ export default function EspanaScreen() {
            ========================================== */}
         <View style={styles.sectionCard}>
           <Text style={styles.sectionHeaderTitle}>🇪🇸 Bandera y Símbolos de España</Text>
-          
+
           <View style={styles.flagImageWrapper}>
             <Image
               source={require('@/assets/images/Escudo_Nacional_de_España.png')}
@@ -58,10 +54,6 @@ export default function EspanaScreen() {
               <Text style={styles.stripText}>ROJO</Text>
             </View>
           </View>
-
-          <Text style={styles.flagDescription}>
-            "La Rojigualda": Conocida mundialmente por sus colores rojo y amarillo que simbolizan la valentía, el sol y la rica herencia cultural española.
-          </Text>
         </View>
 
         {/* ==========================================
@@ -69,7 +61,7 @@ export default function EspanaScreen() {
            ========================================== */}
         <View style={styles.sectionCard}>
           <Text style={styles.sectionHeaderTitle}>📋 Director Técnico</Text>
-          
+
           <View style={styles.coachCardInner}>
             <View style={styles.coachAvatarCircle}>
               <Text style={styles.coachAvatarEmoji}>👔</Text>
