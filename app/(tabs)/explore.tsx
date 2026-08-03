@@ -10,9 +10,9 @@ import {
 } from 'react-native';
 
 /**
- * Pantalla Acerca de (ExploreScreen)
- * Muestra el perfil de la estudiante desarrolladora, el espacio para adjuntar video circular
- * y los detalles de la asignatura.
+ * Pantalla Acerca de (ExploreScreen - app/(tabs)/explore.tsx)
+ * Contiene únicamente el Perfil de la Estudiante Desarrolladora,
+ * el espacio reservado para video/foto circular y la información académica.
  */
 export default function ExploreScreen() {
   return (
@@ -26,10 +26,10 @@ export default function ExploreScreen() {
           <Text style={styles.headerSubtitle}>Perfil de Estudiante & Presentación</Text>
         </View>
 
-        {/* Contenedor del Perfil Principal */}
+        {/* Contenedor del Perfil del Desarrollador */}
         <View style={styles.profileCard}>
 
-          {/* Espacio reservado para Video Circular */}
+          {/* Espacio Reservado para Video o Foto Circular */}
           <View style={styles.videoSectionWrapper}>
             <TouchableOpacity style={styles.videoCircleContainer} activeOpacity={0.85}>
               <View style={styles.videoInnerCircle}>
@@ -41,7 +41,7 @@ export default function ExploreScreen() {
             <Text style={styles.videoInstructions}>🎥 Espacio asignado para adjuntar video de presentación</Text>
           </View>
 
-          {/* Información Detallada de la Estudiante */}
+          {/* Detalles Académicos de la Estudiante */}
           <View style={styles.infoDetailsContainer}>
             <Text style={styles.studentNameTitle}>María Belén Tashiguano Ramírez</Text>
 
