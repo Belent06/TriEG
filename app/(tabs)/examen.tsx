@@ -19,12 +19,17 @@ import {
   View,
 } from 'react-native';
 
+type CategoriaEjemplo = 'todos' | 'formularios' | 'feedback' | 'listas' | 'layout' | 'imagenes';
+
 /**
  * Pantalla de Muestrario de Componentes UI para Examen
  */
 export default function ExamenScreen() {
   // Dimensiones dinámicas de la pantalla (Layout Responsive)
   const { width: screenWidth } = useWindowDimensions();
+
+  // Estado para la Barra Superior de Categorías
+  const [categoriaActiva, setCategoriaActiva] = useState<CategoriaEjemplo>('todos');
 
   // ==========================================
   // ESTADOS PARA FORMULARIO Y VALIDACIÓN
@@ -139,322 +144,452 @@ export default function ExamenScreen() {
         </View>
 
         {/* =========================================================================
+            BARRA SUPERIOR DE FILTROS CATEGORIZADOS (TOP CATEGORY BAR)
+           ========================================================================= */}
+        <View style={styles.topBarContainer}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.topBarScrollContent}>
+            <Pressable
+              style={[styles.topBarTab, categoriaActiva === 'todos' && styles.topBarTabActive]}
+              onPress={() => setCategoriaActiva('todos')}>
+              <Text style={[styles.topBarTabText, categoriaActiva === 'todos' && styles.topBarTabTextActive]}>
+                🌟 Todos
+              </Text>
+            </Pressable>
+
+            <Pressable
+              style={[styles.topBarTab, categoriaActiva === 'formularios' && styles.topBarTabActive]}
+              onPress={() => setCategoriaActiva('formularios')}>
+              <Text style={[styles.topBarTabText, categoriaActiva === 'formularios' && styles.topBarTabTextActive]}>
+                📝 Formularios
+              </Text>
+            </Pressable>
+
+            <Pressable
+              style={[styles.topBarTab, categoriaActiva === 'feedback' && styles.topBarTabActive]}
+              onPress={() => setCategoriaActiva('feedback')}>
+              <Text style={[styles.topBarTabText, categoriaActiva === 'feedback' && styles.topBarTabTextActive]}>
+                🔔 Feedback
+              </Text>
+            </Pressable>
+
+            <Pressable
+              style={[styles.topBarTab, categoriaActiva === 'listas' && styles.topBarTabActive]}
+              onPress={() => setCategoriaActiva('listas')}>
+              <Text style={[styles.topBarTabText, categoriaActiva === 'listas' && styles.topBarTabTextActive]}>
+                📜 Listas
+              </Text>
+            </Pressable>
+
+            <Pressable
+              style={[styles.topBarTab, categoriaActiva === 'layout' && styles.topBarTabActive]}
+              onPress={() => setCategoriaActiva('layout')}>
+              <Text style={[styles.topBarTabText, categoriaActiva === 'layout' && styles.topBarTabTextActive]}>
+                📐 Layout
+              </Text>
+            </Pressable>
+
+            <Pressable
+              style={[styles.topBarTab, categoriaActiva === 'imagenes' && styles.topBarTabActive]}
+              onPress={() => setCategoriaActiva('imagenes')}>
+              <Text style={[styles.topBarTabText, categoriaActiva === 'imagenes' && styles.topBarTabTextActive]}>
+                🖼️ Imágenes
+              </Text>
+            </Pressable>
+          </ScrollView>
+        </View>
+
+        {/* =========================================================================
             BLOQUE 1: FORMULARIO COMPLETO (TextInput, Switch, Dropdown Modal, Checkbox)
            ========================================================================= */}
-        <View style={styles.sectionCard}>
-          <Text style={styles.sectionTitle}>📝 1. Formulario Completo y Validaciones</Text>
-          <Text style={styles.sectionDesc}>
-            Ejemplos de captura de datos con TextInput, Switch, Selector Modal y Checkbox personalizado.
-          </Text>
+        {(categoriaActiva === 'todos' || categoriaActiva === 'formularios') && (
+          <View style={styles.sectionCard}>
+            <Text style={styles.sectionTitle}>📝 1. Formulario Completo y Validaciones</Text>
+            <Text style={styles.sectionDesc}>
+              Ejemplos de captura de datos con TextInput, Switch, Selector Modal y Checkbox personalizado.
+            </Text>
 
-          {/* Input 1: Campo Simple de Texto */}
-          <View style={styles.inputGroup}>
-            <Text style={styles.inputLabel}>Nombre del Estudiante:</Text>
-            <TextInput
-              style={styles.textInput}
-              placeholder="Ej. María Belén Tashiguano"
-              placeholderTextColor="#94A3B8"
-              value={nombreEstudiante}
-              onChangeText={setNombreEstudiante}
-            />
-          </View>
-
-          {/* Input 2: Email con Validación en Tiempo Real */}
-          <View style={styles.inputGroup}>
-            <Text style={styles.inputLabel}>Correo Electrónico (Con Validación):</Text>
-            <TextInput
-              style={[styles.textInput, emailError ? styles.inputErrorBorder : null]}
-              placeholder="ejemplo@correo.com"
-              placeholderTextColor="#94A3B8"
-              keyboardType="email-address"
-              autoCapitalize="none"
-              value={emailInput}
-              onChangeText={handleEmailChange}
-            />
-            {emailError ? <Text style={styles.errorText}>⚠️ {emailError}</Text> : null}
-          </View>
-
-          {/* Input 3: Contraseña con Toggle (secureTextEntry) */}
-          <View style={styles.inputGroup}>
-            <Text style={styles.inputLabel}>Contraseña Segura (Toggle Visible):</Text>
-            <View style={styles.passwordRow}>
+            {/* Input 1: Campo Simple de Texto */}
+            <View style={styles.inputGroup}>
+              <Text style={styles.inputLabel}>Nombre del Estudiante:</Text>
               <TextInput
-                style={[styles.textInput, { flex: 1 }]}
-                placeholder="Ingresa tu clave"
+                style={styles.textInput}
+                placeholder="Ej. María Belén Tashiguano"
                 placeholderTextColor="#94A3B8"
-                secureTextEntry={!showPassword}
-                value={passwordInput}
-                onChangeText={setPasswordInput}
+                value={nombreEstudiante}
+                onChangeText={setNombreEstudiante}
               />
+            </View>
+
+            {/* Input 2: Email con Validación en Tiempo Real */}
+            <View style={styles.inputGroup}>
+              <Text style={styles.inputLabel}>Correo Electrónico (Con Validación):</Text>
+              <TextInput
+                style={[styles.textInput, emailError ? styles.inputErrorBorder : null]}
+                placeholder="ejemplo@correo.com"
+                placeholderTextColor="#94A3B8"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                value={emailInput}
+                onChangeText={handleEmailChange}
+              />
+              {emailError ? <Text style={styles.errorText}>⚠️ {emailError}</Text> : null}
+            </View>
+
+            {/* Input 3: Contraseña con Toggle (secureTextEntry) */}
+            <View style={styles.inputGroup}>
+              <Text style={styles.inputLabel}>Contraseña Segura (Toggle Visible):</Text>
+              <View style={styles.passwordRow}>
+                <TextInput
+                  style={[styles.textInput, { flex: 1 }]}
+                  placeholder="Ingresa tu clave"
+                  placeholderTextColor="#94A3B8"
+                  secureTextEntry={!showPassword}
+                  value={passwordInput}
+                  onChangeText={setPasswordInput}
+                />
+                <Pressable
+                  style={styles.eyeButton}
+                  onPress={() => setShowPassword(!showPassword)}>
+                  <Text style={styles.eyeButtonText}>{showPassword ? '👁️ Ocultar' : '🔒 Ver'}</Text>
+                </Pressable>
+              </View>
+            </View>
+
+            {/* Switch / Toggle */}
+            <View style={styles.switchRow}>
+              <View style={{ flex: 1 }}>
+                <Text style={styles.switchLabel}>Notificaciones del Examen</Text>
+                <Text style={styles.switchSubLabel}>Estado: {switchNotificaciones ? 'ACTIVADO 🔔' : 'DESACTIVADO 🔕'}</Text>
+              </View>
+              <Switch
+                value={switchNotificaciones}
+                onValueChange={setSwitchNotificaciones}
+                trackColor={{ false: '#CBD5E1', true: '#FFD100' }}
+                thumbColor={switchNotificaciones ? '#002B49' : '#F1F5F9'}
+              />
+            </View>
+
+            {/* Picker / Dropdown desplegable usando Modal */}
+            {/* Input 1: Campo Simple de Texto */}
+            <View style={styles.inputGroup}>
+              <Text style={styles.inputLabel}>Nombre del Estudiante:</Text>
+              <TextInput
+                style={styles.textInput}
+                placeholder="Ej. María Belén Tashiguano"
+                placeholderTextColor="#94A3B8"
+                value={nombreEstudiante}
+                onChangeText={setNombreEstudiante}
+              />
+            </View>
+
+            {/* Input 2: Email con Validación en Tiempo Real */}
+            <View style={styles.inputGroup}>
+              <Text style={styles.inputLabel}>Correo Electrónico (Con Validación):</Text>
+              <TextInput
+                style={[styles.textInput, emailError ? styles.inputErrorBorder : null]}
+                placeholder="ejemplo@correo.com"
+                placeholderTextColor="#94A3B8"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                value={emailInput}
+                onChangeText={handleEmailChange}
+              />
+              {emailError ? <Text style={styles.errorText}>⚠️ {emailError}</Text> : null}
+            </View>
+
+            {/* Input 3: Contraseña con Toggle (secureTextEntry) */}
+            <View style={styles.inputGroup}>
+              <Text style={styles.inputLabel}>Contraseña Segura (Toggle Visible):</Text>
+              <View style={styles.passwordRow}>
+                <TextInput
+                  style={[styles.textInput, { flex: 1 }]}
+                  placeholder="Ingresa tu clave"
+                  placeholderTextColor="#94A3B8"
+                  secureTextEntry={!showPassword}
+                  value={passwordInput}
+                  onChangeText={setPasswordInput}
+                />
+                <Pressable
+                  style={styles.eyeButton}
+                  onPress={() => setShowPassword(!showPassword)}>
+                  <Text style={styles.eyeButtonText}>{showPassword ? '👁️ Ocultar' : '🔒 Ver'}</Text>
+                </Pressable>
+              </View>
+            </View>
+
+            {/* Switch / Toggle */}
+            <View style={styles.switchRow}>
+              <View style={{ flex: 1 }}>
+                <Text style={styles.switchLabel}>Notificaciones del Examen</Text>
+                <Text style={styles.switchSubLabel}>Estado: {switchNotificaciones ? 'ACTIVADO 🔔' : 'DESACTIVADO 🔕'}</Text>
+              </View>
+              <Switch
+                value={switchNotificaciones}
+                onValueChange={setSwitchNotificaciones}
+                trackColor={{ false: '#CBD5E1', true: '#FFD100' }}
+                thumbColor={switchNotificaciones ? '#002B49' : '#F1F5F9'}
+              />
+            </View>
+
+            {/* Picker / Dropdown desplegable usando Modal */}
+            <View style={styles.inputGroup}>
+              <Text style={styles.inputLabel}>Seleccionar Posición de Juego (Picker Dropdown):</Text>
               <Pressable
-                style={styles.eyeButton}
-                onPress={() => setShowPassword(!showPassword)}>
-                <Text style={styles.eyeButtonText}>{showPassword ? '👁️ Ocultar' : '🔒 Ver'}</Text>
+                style={styles.dropdownSelector}
+                onPress={() => setPickerModalVisible(true)}>
+                <Text style={styles.dropdownSelectorText}>⚽ {posicionSeleccionada}</Text>
+                <Text style={styles.dropdownArrow}>▼</Text>
               </Pressable>
             </View>
-          </View>
 
-          {/* Switch / Toggle */}
-          <View style={styles.switchRow}>
-            <View style={{ flex: 1 }}>
-              <Text style={styles.switchLabel}>Notificaciones del Examen</Text>
-              <Text style={styles.switchSubLabel}>Estado: {switchNotificaciones ? 'ACTIVADO 🔔' : 'DESACTIVADO 🔕'}</Text>
-            </View>
-            <Switch
-              value={switchNotificaciones}
-              onValueChange={setSwitchNotificaciones}
-              trackColor={{ false: '#CBD5E1', true: '#FFD100' }}
-              thumbColor={switchNotificaciones ? '#002B49' : '#F1F5F9'}
-            />
-          </View>
-
-          {/* Picker / Dropdown desplegable usando Modal */}
-          <View style={styles.inputGroup}>
-            <Text style={styles.inputLabel}>Seleccionar Posición de Juego (Picker Dropdown):</Text>
+            {/* Checkbox Personalizado (Pressable + View) */}
             <Pressable
-              style={styles.dropdownSelector}
-              onPress={() => setPickerModalVisible(true)}>
-              <Text style={styles.dropdownSelectorText}>⚽ {posicionSeleccionada}</Text>
-              <Text style={styles.dropdownArrow}>▼</Text>
+              style={styles.checkboxRow}
+              onPress={() => setCheckboxAcepto(!checkboxAcepto)}>
+              <View style={[styles.checkboxBox, checkboxAcepto && styles.checkboxBoxChecked]}>
+                {checkboxAcepto && <Text style={styles.checkmarkText}>✓</Text>}
+              </View>
+              <Text style={styles.checkboxLabel}>Acepto los términos y condiciones</Text>
             </Pressable>
           </View>
-
-          {/* Checkbox Personalizado (Pressable + View) */}
-          <Pressable
-            style={styles.checkboxRow}
-            onPress={() => setCheckboxAcepto(!checkboxAcepto)}>
-            <View style={[styles.checkboxBox, checkboxAcepto && styles.checkboxBoxChecked]}>
-              {checkboxAcepto && <Text style={styles.checkmarkText}>✓</Text>}
-            </View>
-            <Text style={styles.checkboxLabel}>Acepto los términos y condiciones</Text>
-          </Pressable>
-        </View>
+        )}
 
         {/* =========================================================================
             BLOQUE 2: FEEDBACK VISUAL Y MODALES (ActivityIndicator, Modal, Alerts, Pressable)
            ========================================================================= */}
-        <View style={styles.sectionCard}>
-          <Text style={styles.sectionTitle}>🔔 2. Feedback Visual y Diálogos Modales</Text>
-          <Text style={styles.sectionDesc}>
-            Uso de ActivityIndicator para cargas, Modal emergente y Alert nativo del sistema.
-          </Text>
+        {(categoriaActiva === 'todos' || categoriaActiva === 'feedback') && (
+          <View style={styles.sectionCard}>
+            <Text style={styles.sectionTitle}>🔔 2. Feedback Visual y Diálogos Modales</Text>
+            <Text style={styles.sectionDesc}>
+              Uso de ActivityIndicator para cargas, Modal emergente y Alert nativo del sistema.
+            </Text>
 
-          {/* Indicador de Carga (ActivityIndicator) */}
-          <View style={styles.feedbackBox}>
-            <Text style={styles.feedbackTitle}>Componente: ActivityIndicator</Text>
-            {loadingState ? (
-              <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color={indicatorColor} />
-                <Text style={styles.loadingText}>Cargando proceso simulado...</Text>
+            {/* Indicador de Carga (ActivityIndicator) */}
+            <View style={styles.feedbackBox}>
+              <Text style={styles.feedbackTitle}>Componente: ActivityIndicator</Text>
+              {loadingState ? (
+                <View style={styles.loadingContainer}>
+                  <ActivityIndicator size="large" color={indicatorColor} />
+                  <Text style={styles.loadingText}>Cargando proceso simulado...</Text>
+                </View>
+              ) : (
+                <Text style={styles.normalText}>Presiona el botón para probar la animación de carga.</Text>
+              )}
+
+              <View style={styles.buttonRow}>
+                <Pressable
+                  style={({ pressed }) => [styles.actionButton, pressed && styles.btnPressed]}
+                  onPress={ejecutarSimulacionCarga}>
+                  <Text style={styles.actionButtonText}>⏳ Probar Carga (2s)</Text>
+                </Pressable>
+
+                <Pressable
+                  style={({ pressed }) => [styles.actionButtonSecondary, pressed && styles.btnPressed]}
+                  onPress={() => setIndicatorColor(indicatorColor === '#002B49' ? '#AA1515' : '#002B49')}>
+                  <Text style={styles.actionButtonSecText}>🎨 Cambiar Color</Text>
+                </Pressable>
               </View>
-            ) : (
-              <Text style={styles.normalText}>Presiona el botón para probar la animación de carga.</Text>
-            )}
-
-            <View style={styles.buttonRow}>
-              <Pressable
-                style={({ pressed }) => [styles.actionButton, pressed && styles.btnPressed]}
-                onPress={ejecutarSimulacionCarga}>
-                <Text style={styles.actionButtonText}>⏳ Probar Carga (2s)</Text>
-              </Pressable>
-
-              <Pressable
-                style={({ pressed }) => [styles.actionButtonSecondary, pressed && styles.btnPressed]}
-                onPress={() => setIndicatorColor(indicatorColor === '#002B49' ? '#AA1515' : '#002B49')}>
-                <Text style={styles.actionButtonSecText}>🎨 Cambiar Color</Text>
-              </Pressable>
             </View>
-          </View>
 
-          {/* Alertas Nativas (Alert.alert) */}
-          <View style={styles.feedbackBox}>
-            <Text style={styles.feedbackTitle}>Componente: Alert Nativa del Sistema</Text>
-            <View style={styles.buttonRow}>
-              <Pressable
-                style={({ pressed }) => [styles.alertBtn, pressed && styles.btnPressed]}
-                onPress={mostrarAlertaSimple}>
-                <Text style={styles.alertBtnText}>Alerta Simple ℹ️</Text>
-              </Pressable>
+            {/* Alertas Nativas (Alert.alert) */}
+            <View style={styles.feedbackBox}>
+              <Text style={styles.feedbackTitle}>Componente: Alert Nativa del Sistema</Text>
+              <View style={styles.buttonRow}>
+                <Pressable
+                  style={({ pressed }) => [styles.alertBtn, pressed && styles.btnPressed]}
+                  onPress={mostrarAlertaSimple}>
+                  <Text style={styles.alertBtnText}>Alerta Simple ℹ️</Text>
+                </Pressable>
 
-              <Pressable
-                style={({ pressed }) => [styles.alertBtnConfirm, pressed && styles.btnPressed]}
-                onPress={mostrarAlertaConfirmacion}>
-                <Text style={styles.alertBtnConfirmText}>Confirmación ❓</Text>
-              </Pressable>
+                <Pressable
+                  style={({ pressed }) => [styles.alertBtnConfirm, pressed && styles.btnPressed]}
+                  onPress={mostrarAlertaConfirmacion}>
+                  <Text style={styles.alertBtnConfirmText}>Confirmación ❓</Text>
+                </Pressable>
+              </View>
             </View>
-          </View>
 
-          {/* Botón para Abrir Modal Flotante */}
-          <Pressable
-            style={({ pressed }) => [styles.modalTriggerBtn, pressed && styles.btnPressed]}
-            onPress={() => setModalFlotanteVisible(true)}>
-            <Text style={styles.modalTriggerText}>🪟 Abrir Modal Flotante Personalizado</Text>
-          </Pressable>
-        </View>
+            {/* Botón para Abrir Modal Flotante */}
+            <Pressable
+              style={({ pressed }) => [styles.modalTriggerBtn, pressed && styles.btnPressed]}
+              onPress={() => setModalFlotanteVisible(true)}>
+              <Text style={styles.modalTriggerText}>🪟 Abrir Modal Flotante Personalizado</Text>
+            </Pressable>
+          </View>
+        )}
 
         {/* =========================================================================
             BLOQUE 3: LISTAS DINÁMICAS (FlatList, ScrollView Horizontal, SectionList)
            ========================================================================= */}
-        <View style={styles.sectionCard}>
-          <Text style={styles.sectionTitle}>📜 3. Listas Dinámicas (FlatList & SectionList)</Text>
-          <Text style={styles.sectionDesc}>
-            Renderizado de datos con FlatList, listas horizontales con ScrollView y agrupaciones con SectionList.
-          </Text>
+        {(categoriaActiva === 'todos' || categoriaActiva === 'listas') && (
+          <View style={styles.sectionCard}>
+            <Text style={styles.sectionTitle}>📜 3. Listas Dinámicas (FlatList & SectionList)</Text>
+            <Text style={styles.sectionDesc}>
+              Renderizado de datos con FlatList, listas horizontales con ScrollView y agrupaciones con SectionList.
+            </Text>
 
-          {/* ScrollView Horizontal */}
-          <Text style={styles.subSectionTitle}>↔️ ScrollView Horizontal (Tarjetas Deslizables):</Text>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
-            <View style={[styles.horizontalCard, { backgroundColor: '#002B49' }]}>
-              <Text style={styles.hCardEmoji}>🏆</Text>
-              <Text style={styles.hCardTitle}>Copa del Mundo</Text>
-              <Text style={styles.hCardSub}>Edición 2026</Text>
-            </View>
-            <View style={[styles.horizontalCard, { backgroundColor: '#AA1515' }]}>
-              <Text style={styles.hCardEmoji}>🇪🇸</Text>
-              <Text style={styles.hCardTitle}>Eurocopa 2024</Text>
-              <Text style={styles.hCardSub}>Campeón España</Text>
-            </View>
-            <View style={[styles.horizontalCard, { backgroundColor: '#74ACDF' }]}>
-              <Text style={styles.hCardEmoji}>🇦🇷</Text>
-              <Text style={styles.hCardTitle}>Copa América</Text>
-              <Text style={styles.hCardSub}>Campeón Argentina</Text>
-            </View>
-          </ScrollView>
+            {/* ScrollView Horizontal */}
+            <Text style={styles.subSectionTitle}>↔️ ScrollView Horizontal (Tarjetas Deslizables):</Text>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
+              <View style={[styles.horizontalCard, { backgroundColor: '#002B49' }]}>
+                <Text style={styles.hCardEmoji}>🏆</Text>
+                <Text style={styles.hCardTitle}>Copa del Mundo</Text>
+                <Text style={styles.hCardSub}>Edición 2026</Text>
+              </View>
+              <View style={[styles.horizontalCard, { backgroundColor: '#AA1515' }]}>
+                <Text style={styles.hCardEmoji}>🇪🇸</Text>
+                <Text style={styles.hCardTitle}>Eurocopa 2024</Text>
+                <Text style={styles.hCardSub}>Campeón España</Text>
+              </View>
+              <View style={[styles.horizontalCard, { backgroundColor: '#74ACDF' }]}>
+                <Text style={styles.hCardEmoji}>🇦🇷</Text>
+                <Text style={styles.hCardTitle}>Copa América</Text>
+                <Text style={styles.hCardSub}>Campeón Argentina</Text>
+              </View>
+            </ScrollView>
 
-          {/* FlatList Dinámica */}
-          <Text style={styles.subSectionTitle}>📋 FlatList de Selecciones Destacadas:</Text>
-          <FlatList
-            data={listaEquipos}
-            keyExtractor={(item) => item.id}
-            scrollEnabled={false} // Desactivado scroll propio para estar dentro del ScrollView principal
-            ItemSeparatorComponent={() => <View style={styles.listSeparator} />}
-            renderItem={({ item }) => (
-              <View style={styles.flatListItem}>
-                <Text style={styles.flatListTitle}>{item.nombre}</Text>
-                <Text style={styles.flatListSub}>Logro: {item.copa} • {item.ranking}</Text>
-              </View>
-            )}
-          />
+            {/* FlatList Dinámica */}
+            <Text style={styles.subSectionTitle}>📋 FlatList de Selecciones Destacadas:</Text>
+            <FlatList
+              data={listaEquipos}
+              keyExtractor={(item) => item.id}
+              scrollEnabled={false} // Desactivado scroll propio para estar dentro del ScrollView principal
+              ItemSeparatorComponent={() => <View style={styles.listSeparator} />}
+              renderItem={({ item }) => (
+                <View style={styles.flatListItem}>
+                  <Text style={styles.flatListTitle}>{item.nombre}</Text>
+                  <Text style={styles.flatListSub}>Logro: {item.copa} • {item.ranking}</Text>
+                </View>
+              )}
+            />
 
-          {/* SectionList Dinámica (Grupos) */}
-          <Text style={styles.subSectionTitle}>📑 SectionList (Agrupada por Posiciones):</Text>
-          <SectionList
-            sections={seccionesPlantilla}
-            keyExtractor={(item) => item.id}
-            scrollEnabled={false}
-            renderSectionHeader={({ section: { title } }) => (
-              <View style={styles.sectionHeaderBox}>
-                <Text style={styles.sectionHeaderText}>{title}</Text>
-              </View>
-            )}
-            renderItem={({ item }) => (
-              <View style={styles.sectionListItem}>
-                <Text style={styles.sectionItemName}>{item.name}</Text>
-                <Text style={styles.sectionItemSub}>{item.sub}</Text>
-              </View>
-            )}
-          />
-        </View>
+            {/* SectionList Dinámica (Grupos) */}
+            <Text style={styles.subSectionTitle}>📑 SectionList (Agrupada por Posiciones):</Text>
+            <SectionList
+              sections={seccionesPlantilla}
+              keyExtractor={(item) => item.id}
+              scrollEnabled={false}
+              renderSectionHeader={({ section: { title } }) => (
+                <View style={styles.sectionHeaderBox}>
+                  <Text style={styles.sectionHeaderText}>{title}</Text>
+                </View>
+              )}
+              renderItem={({ item }) => (
+                <View style={styles.sectionListItem}>
+                  <Text style={styles.sectionItemName}>{item.name}</Text>
+                  <Text style={styles.sectionItemSub}>{item.sub}</Text>
+                </View>
+              )}
+            />
+          </View>
+        )}
 
         {/* =========================================================================
             BLOQUE 4: LAYOUT, GRID FLEXBOX, BADGES Y RESPONSIVE
            ========================================================================= */}
-        <View style={styles.sectionCard}>
-          <Text style={styles.sectionTitle}>📐 4. Layout Flexbox, Grid & Responsive</Text>
-          <Text style={styles.sectionDesc}>
-            Rejilla adaptable Flexbox, Badges/Chips y dimensiones calculadas dinámicamente.
-          </Text>
+        {(categoriaActiva === 'todos' || categoriaActiva === 'layout') && (
+          <View style={styles.sectionCard}>
+            <Text style={styles.sectionTitle}>📐 4. Layout Flexbox, Grid & Responsive</Text>
+            <Text style={styles.sectionDesc}>
+              Rejilla adaptable Flexbox, Badges/Chips y dimensiones calculadas dinámicamente.
+            </Text>
 
-          <Text style={styles.responsiveInfoText}>
-            📐 Ancho actual de pantalla: <Text style={styles.boldText}>{Math.round(screenWidth)}px</Text>
-          </Text>
+            <Text style={styles.responsiveInfoText}>
+              📐 Ancho actual de pantalla: <Text style={styles.boldText}>{Math.round(screenWidth)}px</Text>
+            </Text>
 
-          {/* Rejilla Grid de 2 Columnas con Flexbox */}
-          <Text style={styles.subSectionTitle}>🔲 Rejilla (Grid) de 2 Columnas:</Text>
-          <View style={styles.gridContainer}>
-            <View style={styles.gridCard}>
-              <Text style={styles.gridIcon}>⚡</Text>
-              <Text style={styles.gridCardTitle}>Rápido</Text>
-              <Text style={styles.gridCardSub}>Optimizaciones Flex</Text>
+            {/* Rejilla Grid de 2 Columnas con Flexbox */}
+            <Text style={styles.subSectionTitle}>🔲 Rejilla (Grid) de 2 Columnas:</Text>
+            <View style={styles.gridContainer}>
+              <View style={styles.gridCard}>
+                <Text style={styles.gridIcon}>⚡</Text>
+                <Text style={styles.gridCardTitle}>Rápido</Text>
+                <Text style={styles.gridCardSub}>Optimizaciones Flex</Text>
+              </View>
+              <View style={styles.gridCard}>
+                <Text style={styles.gridIcon}>🎨</Text>
+                <Text style={styles.gridCardTitle}>Diseño</Text>
+                <Text style={styles.gridCardSub}>Sombras y Elevation</Text>
+              </View>
+              <View style={styles.gridCard}>
+                <Text style={styles.gridIcon}>📱</Text>
+                <Text style={styles.gridCardTitle}>Responsive</Text>
+                <Text style={styles.gridCardSub}>useWindowDimensions</Text>
+              </View>
+              <View style={styles.gridCard}>
+                <Text style={styles.gridIcon}>🛡️</Text>
+                <Text style={styles.gridCardTitle}>Seguro</Text>
+                <Text style={styles.gridCardSub}>SafeArea & Status</Text>
+              </View>
             </View>
-            <View style={styles.gridCard}>
-              <Text style={styles.gridIcon}>🎨</Text>
-              <Text style={styles.gridCardTitle}>Diseño</Text>
-              <Text style={styles.gridCardSub}>Sombras y Elevation</Text>
-            </View>
-            <View style={styles.gridCard}>
-              <Text style={styles.gridIcon}>📱</Text>
-              <Text style={styles.gridCardTitle}>Responsive</Text>
-              <Text style={styles.gridCardSub}>useWindowDimensions</Text>
-            </View>
-            <View style={styles.gridCard}>
-              <Text style={styles.gridIcon}>🛡️</Text>
-              <Text style={styles.gridCardTitle}>Seguro</Text>
-              <Text style={styles.gridCardSub}>SafeArea & Status</Text>
+
+            {/* Badges / Chips */}
+            <Text style={styles.subSectionTitle}>🏷️ Componentes Badges / Chips:</Text>
+            <View style={styles.chipsRow}>
+              <View style={[styles.chipPill, { backgroundColor: '#DCFCE7', borderColor: '#86EFAC' }]}>
+                <Text style={[styles.chipText, { color: '#166534' }]}>🟢 Activo</Text>
+              </View>
+              <View style={[styles.chipPill, { backgroundColor: '#FEF3C7', borderColor: '#FDE047' }]}>
+                <Text style={[styles.chipText, { color: '#854D0E' }]}>🏆 Campeón</Text>
+              </View>
+              <View style={[styles.chipPill, { backgroundColor: '#DBEAFE', borderColor: '#93C5FD' }]}>
+                <Text style={[styles.chipText, { color: '#1E40AF' }]}>⭐ Destacado</Text>
+              </View>
+              <View style={[styles.chipPill, { backgroundColor: '#FEE2E2', borderColor: '#FCA5A5' }]}>
+                <Text style={[styles.chipText, { color: '#991B1B' }]}>🔥 En Vivo</Text>
+              </View>
             </View>
           </View>
-
-          {/* Badges / Chips */}
-          <Text style={styles.subSectionTitle}>🏷️ Componentes Badges / Chips:</Text>
-          <View style={styles.chipsRow}>
-            <View style={[styles.chipPill, { backgroundColor: '#DCFCE7', borderColor: '#86EFAC' }]}>
-              <Text style={[styles.chipText, { color: '#166534' }]}>🟢 Activo</Text>
-            </View>
-            <View style={[styles.chipPill, { backgroundColor: '#FEF3C7', borderColor: '#FDE047' }]}>
-              <Text style={[styles.chipText, { color: '#854D0E' }]}>🏆 Campeón</Text>
-            </View>
-            <View style={[styles.chipPill, { backgroundColor: '#DBEAFE', borderColor: '#93C5FD' }]}>
-              <Text style={[styles.chipText, { color: '#1E40AF' }]}>⭐ Destacado</Text>
-            </View>
-            <View style={[styles.chipPill, { backgroundColor: '#FEE2E2', borderColor: '#FCA5A5' }]}>
-              <Text style={[styles.chipText, { color: '#991B1B' }]}>🔥 En Vivo</Text>
-            </View>
-          </View>
-        </View>
+        )}
 
         {/* =========================================================================
             BLOQUE 5: MANEJO DE IMÁGENES (Image con Fallback & ImageBackground)
            ========================================================================= */}
-        <View style={styles.sectionCard}>
-          <Text style={styles.sectionTitle}>🖼️ 5. Manejo Avanzado de Imágenes</Text>
-          <Text style={styles.sectionDesc}>
-            Carga de imágenes locales con placeholders y componentes de fondo ImageBackground.
-          </Text>
+        {(categoriaActiva === 'todos' || categoriaActiva === 'imagenes') && (
+          <View style={styles.sectionCard}>
+            <Text style={styles.sectionTitle}>🖼️ 5. Manejo Avanzado de Imágenes</Text>
+            <Text style={styles.sectionDesc}>
+              Carga de imágenes locales con placeholders y componentes de fondo ImageBackground.
+            </Text>
 
-          {/* Componente Image con Fallback */}
-          <View style={styles.imageDemoBox}>
-            <Text style={styles.subSectionTitle}>📷 Componente Image Local (Escudo):</Text>
-            <View style={styles.imageWrapper}>
-              <Image
-                source={require('@/assets/images/ecuador_logo.png')}
-                style={styles.demoImage}
-                resizeMode="contain"
-                onLoadStart={() => setImgLoading(true)}
-                onLoadEnd={() => setImgLoading(false)}
-                onError={() => setImgError(true)}
-              />
-              {imgLoading && <ActivityIndicator size="small" color="#002B49" style={styles.imgLoader} />}
-            </View>
-            {imgError ? <Text style={styles.errorText}>Error al cargar la imagen de muestra.</Text> : null}
-          </View>
-
-          {/* Componente ImageBackground */}
-          <Text style={styles.subSectionTitle}>🌄 Tarjeta con ImageBackground:</Text>
-          <View style={styles.imageBgContainer}>
-            <ImageBackground
-              source={require('@/assets/images/Escudo_Nacional_de_España.png')}
-              style={styles.imageBgStyle}
-              imageStyle={{ opacity: 0.15, resizeMode: 'cover' }}>
-              <View style={styles.bgOverlayContent}>
-                <Text style={styles.bgOverlayTitle}>Fondo de Pantalla Decorativo</Text>
-                <Text style={styles.bgOverlaySub}>Demostración de ImageBackground con opacidad y contenido superpuesto.</Text>
-                <View style={styles.bgBadge}>
-                  <Text style={styles.bgBadgeText}>✨ Fondo Superpuesto</Text>
-                </View>
+            {/* Componente Image con Fallback */}
+            <View style={styles.imageDemoBox}>
+              <Text style={styles.subSectionTitle}>📷 Componente Image Local (Escudo):</Text>
+              <View style={styles.imageWrapper}>
+                <Image
+                  source={require('@/assets/images/ecuador_logo.png')}
+                  style={styles.demoImage}
+                  resizeMode="contain"
+                  onLoadStart={() => setImgLoading(true)}
+                  onLoadEnd={() => setImgLoading(false)}
+                  onError={() => setImgError(true)}
+                />
+                {imgLoading && <ActivityIndicator size="small" color="#002B49" style={styles.imgLoader} />}
               </View>
-            </ImageBackground>
+              {imgError ? <Text style={styles.errorText}>Error al cargar la imagen de muestra.</Text> : null}
+            </View>
+
+            {/* Componente ImageBackground */}
+            <Text style={styles.subSectionTitle}>🌄 Tarjeta con ImageBackground:</Text>
+            <View style={styles.imageBgContainer}>
+              <ImageBackground
+                source={require('@/assets/images/Escudo_Nacional_de_España.png')}
+                style={styles.imageBgStyle}
+                imageStyle={{ opacity: 0.15, resizeMode: 'cover' }}>
+                <View style={styles.bgOverlayContent}>
+                  <Text style={styles.bgOverlayTitle}>Fondo de Pantalla Decorativo</Text>
+                  <Text style={styles.bgOverlaySub}>Demostración de ImageBackground con opacidad y contenido superpuesto.</Text>
+                  <View style={styles.bgBadge}>
+                    <Text style={styles.bgBadgeText}>✨ Fondo Superpuesto</Text>
+                  </View>
+                </View>
+              </ImageBackground>
+            </View>
           </View>
-        </View>
+        )}
 
         {/* PIE DE PÁGINA */}
         <View style={styles.footer}>
@@ -565,6 +700,39 @@ const styles = StyleSheet.create({
     color: '#94A3B8',
     marginTop: 4,
     textAlign: 'center',
+  },
+  // ESTILOS BARRA SUPERIOR DE CATEGORÍAS (TOP CATEGORY BAR)
+  topBarContainer: {
+    backgroundColor: '#002B49',
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(255, 209, 0, 0.2)',
+  },
+  topBarScrollContent: {
+    paddingHorizontal: 16,
+    gap: 8,
+  },
+  topBarTab: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.2)',
+  },
+  topBarTabActive: {
+    backgroundColor: '#FFD100',
+    borderColor: '#FFD100',
+  },
+  topBarTabText: {
+    color: '#94A3B8',
+    fontSize: 12,
+    fontWeight: '700',
+  },
+  topBarTabTextActive: {
+    color: '#002B49',
+    fontSize: 12,
+    fontWeight: '900',
   },
   sectionCard: {
     backgroundColor: '#FFFFFF',
