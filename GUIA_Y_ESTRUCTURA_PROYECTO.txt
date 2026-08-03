@@ -56,7 +56,7 @@ La arquitectura del proyecto está estructurada de manera modular y escalable en
       ├── _layout.tsx               -> Configuración visual y opciones de la barra de pestañas (4 pestañas).
       ├── index.tsx                 -> Pestaña 1: HOME (Vista principal autocontenida: Bienvenida + Bandera y Tarjeta Argentina).
       ├── espana.tsx                -> Pestaña 2: ESPAÑA (Bandera, DT Luis de la Fuente, Lista de Jugadores).
-      ├── examen.tsx                -> Pestaña 3: EXAMEN UI (Muestrario interactivo completo de componentes UI).
+      ├── examen.tsx                -> Pestaña 3: EXAMEN UI (Muestrario interactivo con Barra Superior de Categorías y filtrado dinámico).
       └── explore.tsx               -> Pestaña 4: ACERCA DE (Perfil desarrollador María Belén Tashiguano y espacio de video).
 
 /components (Componentes de Interfaz de Usuario)
