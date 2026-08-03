@@ -10,7 +10,6 @@ import {
   SafeAreaView,
   StatusBar,
 } from 'react-native';
-import { AppTheme } from '@/constants/theme';
 import { TEAM_PROFILE } from '@/data/team-info';
 
 const { width } = Dimensions.get('window');
@@ -19,12 +18,23 @@ interface CustomSplashScreenProps {
   onFinish: () => void;
 }
 
+/**
+ * Componente CustomSplashScreen
+ * Muestra una pantalla de bienvenida animada con el logo de Ecuador y los colores del país.
+ * 
+ * Funcionalidad:
+ * - Secuencia de animaciones con Animated.parallel, Animated.timing y Animated.spring.
+ * - Temporizador automático de 3.5 segundos hacia la pantalla principal (Bottom Tabs).
+ * - Botón manual de ingreso para omitir la espera ("Ingresar a MiTri 🚀").
+ */
 export const CustomSplashScreen: React.FC<CustomSplashScreenProps> = ({ onFinish }) => {
+  // Referencias para valores de animación mutables sin re-renderizar la UI
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const scaleAnim = useRef(new Animated.Value(0.85)).current;
   const badgeAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
+    // Secuencia principal de animación
     Animated.sequence([
       Animated.parallel([
         Animated.timing(fadeAnim, {
@@ -46,11 +56,12 @@ export const CustomSplashScreen: React.FC<CustomSplashScreenProps> = ({ onFinish
       }),
     ]).start();
 
-    // Auto navigate after 3.5 seconds if user doesn't press button
+    // Temporizador de navegación automática tras 3.5 segundos si el usuario no presiona el botón
     const timer = setTimeout(() => {
       onFinish();
     }, 3500);
 
+    // Limpieza del temporizador al desmontar el componente
     return () => clearTimeout(timer);
   }, []);
 
