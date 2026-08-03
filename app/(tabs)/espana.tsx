@@ -1,3 +1,4 @@
+import { SPAIN_PLAYERS } from '@/data/team-info';
 import React from 'react';
 import {
   Image,
@@ -8,11 +9,10 @@ import {
   Text,
   View,
 } from 'react-native';
-import { SPAIN_PLAYERS } from '@/data/team-info';
 
 /**
  * Pantalla de España (EspanaScreen)
- * Importa los datos de los jugadores directamente desde la Capa de Datos (team-info.ts).
+ * Importa los datos de los jugadores desde la Capa de Datos (team-info.ts).
  */
 export default function EspanaScreen() {
   const jugadores = SPAIN_PLAYERS;
@@ -30,7 +30,7 @@ export default function EspanaScreen() {
 
           <View style={styles.flagImageWrapper}>
             <Image
-              source={require('@/assets/images/Escudo_Nacional_de_España.png')}
+              source={require('@/assets/images/CNE.png')}
               style={styles.flagImage}
               resizeMode="contain"
             />

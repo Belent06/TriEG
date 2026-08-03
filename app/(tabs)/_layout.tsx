@@ -37,7 +37,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="espana"
         options={{
-          title: 'España',
+          title: 'Candidatos',
           tabBarIcon: ({ color }) => <IconSymbol size={26} name="flag.fill" color={color} />,
         }}
       />
@@ -48,6 +48,7 @@ export default function TabLayout() {
         options={{
           title: 'Examen UI',
           tabBarIcon: ({ color }) => <IconSymbol size={26} name="cube.box.fill" color={color} />,
+          href: null,
         }}
       />
 
@@ -55,7 +56,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="explore"
         options={{
-          title: 'Acerca de',
+          title: 'Estadísticas',
           tabBarIcon: ({ color }) => <IconSymbol size={26} name="info.circle.fill" color={color} />,
         }}
       />

@@ -4,7 +4,7 @@
     "slug": "mitri",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/Escudo_Nacional_de_España.png",
+    "icon": "./assets/images/CNE.png",
     "scheme": "mitri",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -14,20 +14,20 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#FFD100",
-        "foregroundImage": "./assets/images/Escudo_Nacional_de_España.png"
+        "foregroundImage": "./assets/images/CNE.png"
       },
       "edgeToEdgeEnabled": true
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/images/Escudo_Nacional_de_España.png"
+      "favicon": "./assets/images/CNE.png"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/Escudo_Nacional_de_España.png",
+          "image": "./assets/images/CNE.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#FFD100",

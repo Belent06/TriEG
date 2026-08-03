@@ -11,7 +11,7 @@ export const WelcomeArgentinaCard: React.FC = () => {
       <View style={styles.welcomeCard}>
         <Text style={styles.welcomeTitle}>👋 ¡Bienvenida, Belén!</Text>
         <Text style={styles.welcomeBody}>
-          Tu aplicación sobre la Selección y grandes selecciones del fútbol mundial.
+          Aplicación sobre grandes selecciones del fútbol mundial.
         </Text>
       </View>
 

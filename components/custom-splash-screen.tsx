@@ -1,16 +1,16 @@
+import { TEAM_PROFILE } from '@/data/team-info';
 import React, { useEffect, useRef } from 'react';
 import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
   Animated,
   Dimensions,
+  Image,
   SafeAreaView,
   StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import { TEAM_PROFILE } from '@/data/team-info';
 
 const { width } = Dimensions.get('window');
 
@@ -68,7 +68,7 @@ export const CustomSplashScreen: React.FC<CustomSplashScreenProps> = ({ onFinish
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#FFD100" />
-      
+
       {/* Decorative background shapes */}
       <View style={styles.topYellowHeader} />
       <View style={styles.blueCurvedContainer} />
@@ -85,7 +85,7 @@ export const CustomSplashScreen: React.FC<CustomSplashScreenProps> = ({ onFinish
             },
           ]}>
           <Image
-            source={require('@/assets/images/ecuador_logo.png')}
+            source={require('@/assets/images/CNE.png')}
             style={styles.logoImage}
             resizeMode="contain"
           />

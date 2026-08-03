@@ -576,7 +576,7 @@ export default function ExamenScreen() {
             <Text style={styles.subSectionTitle}>🌄 Tarjeta con ImageBackground:</Text>
             <View style={styles.imageBgContainer}>
               <ImageBackground
-                source={require('@/assets/images/Escudo_Nacional_de_España.png')}
+                source={require('@/assets/images/CNE.png')}
                 style={styles.imageBgStyle}
                 imageStyle={{ opacity: 0.15, resizeMode: 'cover' }}>
                 <View style={styles.bgOverlayContent}>
