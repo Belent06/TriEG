@@ -8,21 +8,14 @@ import {
   Text,
   View,
 } from 'react-native';
+import { SPAIN_PLAYERS } from '@/data/team-info';
 
 /**
- * Pantalla de España
+ * Pantalla de España (EspanaScreen)
+ * Importa los datos de los jugadores directamente desde la Capa de Datos (team-info.ts).
  */
 export default function EspanaScreen() {
-  const jugadores = [
-    { id: '1', nombre: 'Lamine Yamal', dorsal: 19, posicion: 'Extremo Derecho', club: 'FC Barcelona' },
-    { id: '2', nombre: 'Rodri Hernández', dorsal: 16, posicion: 'Centrocampista Pivot', club: 'Manchester City' },
-    { id: '3', nombre: 'Dani Olmo', dorsal: 10, posicion: 'Mediocampista Ofensivo', club: 'FC Barcelona' },
-    { id: '4', nombre: 'Nico Williams', dorsal: 17, posicion: 'Extremo Izquierdo', club: 'Athletic Club' },
-    { id: '5', nombre: 'Pedri González', dorsal: 20, posicion: 'Centrocampista', club: 'FC Barcelona' },
-    { id: '6', nombre: 'Dani Carvajal', dorsal: 2, posicion: 'Lateral Derecho', club: 'Real Madrid' },
-    { id: '7', nombre: 'Marc Cucurella', dorsal: 24, posicion: 'Lateral Izquierdo', club: 'Chelsea FC' },
-    { id: '8', nombre: 'Unai Simón', dorsal: 23, posicion: 'Guardameta', club: 'Athletic Club' },
-  ];
+  const jugadores = SPAIN_PLAYERS;
 
   return (
     <SafeAreaView style={styles.safeArea}>
