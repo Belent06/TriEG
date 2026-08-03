@@ -1,12 +1,12 @@
 import React from 'react';
 import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  TouchableOpacity,
   SafeAreaView,
+  ScrollView,
   StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
 /**
@@ -34,11 +34,10 @@ export default function ExploreScreen() {
             <TouchableOpacity style={styles.videoCircleContainer} activeOpacity={0.85}>
               <View style={styles.videoInnerCircle}>
                 <Text style={styles.playIcon}>▶</Text>
-                <Text style={styles.videoLabel}>Espacio para Video</Text>
-                <Text style={styles.videoSubLabel}>(Circular)</Text>
+                <Text style={styles.videoLabel}>Video</Text>
               </View>
             </TouchableOpacity>
-            <Text style={styles.videoInstructions}>🎥 Espacio reservado para subir/adjuntar video de presentación</Text>
+            <Text style={styles.videoInstructions}>🎥 Video de presentación</Text>
           </View>
 
           {/* Datos Personales y Académicos de la Desarrolladora */}
@@ -217,5 +216,6 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: '#64748B',
     marginTop: 2,
+
   },
 });
