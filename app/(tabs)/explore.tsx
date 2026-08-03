@@ -10,9 +10,9 @@ import {
 } from 'react-native';
 
 /**
- * Pantalla Acerca de (ExploreScreen - app/(tabs)/explore.tsx)
- * Contiene únicamente el Perfil de la Estudiante Desarrolladora,
- * el espacio reservado para video/foto circular y la información académica.
+ * Pantalla Acerca de / Perfil del Desarrollador (ExploreScreen - app/(tabs)/explore.tsx)
+ * Contiene únicamente los datos de la desarrolladora y el espacio circular
+ * reservado para adjuntar el video de presentación.
  */
 export default function ExploreScreen() {
   return (
@@ -20,16 +20,16 @@ export default function ExploreScreen() {
       <StatusBar barStyle="light-content" backgroundColor="#002B49" />
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
 
-        {/* Encabezado Principal */}
+        {/* Encabezado del Perfil */}
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>Acerca del Desarrollador</Text>
-          <Text style={styles.headerSubtitle}>Perfil de Estudiante & Presentación</Text>
+          <Text style={styles.headerTitle}>👤 Perfil del Desarrollador</Text>
+          <Text style={styles.headerSubtitle}>Presentación de la Estudiante</Text>
         </View>
 
-        {/* Contenedor del Perfil del Desarrollador */}
+        {/* Tarjeta del Perfil */}
         <View style={styles.profileCard}>
 
-          {/* Espacio Reservado para Video o Foto Circular */}
+          {/* Espacio Circular para Video de Presentación */}
           <View style={styles.videoSectionWrapper}>
             <TouchableOpacity style={styles.videoCircleContainer} activeOpacity={0.85}>
               <View style={styles.videoInnerCircle}>
@@ -38,10 +38,10 @@ export default function ExploreScreen() {
                 <Text style={styles.videoSubLabel}>(Circular)</Text>
               </View>
             </TouchableOpacity>
-            <Text style={styles.videoInstructions}>🎥 Espacio asignado para adjuntar video de presentación</Text>
+            <Text style={styles.videoInstructions}>🎥 Espacio reservado para subir/adjuntar video de presentación</Text>
           </View>
 
-          {/* Detalles Académicos de la Estudiante */}
+          {/* Datos Personales y Académicos de la Desarrolladora */}
           <View style={styles.infoDetailsContainer}>
             <Text style={styles.studentNameTitle}>María Belén Tashiguano Ramírez</Text>
 
@@ -57,14 +57,14 @@ export default function ExploreScreen() {
 
             <View style={styles.profileRow}>
               <Text style={styles.profileLabel}>🗓️ Nivel / Semestre:</Text>
-              <Text style={styles.profileValue}>Décimo Semestre</Text>
+              <Text style={styles.profileValue}>Décimo Semestre (10mo)</Text>
             </View>
           </View>
         </View>
 
         {/* Pie de Página */}
         <View style={styles.footer}>
-          <Text style={styles.footerText}>Desarrollado para Dispositivos Móviles</Text>
+          <Text style={styles.footerText}>Desarrollado para Dispositivos Móviles 📱</Text>
           <Text style={styles.footerSub}>10mo Semestre • Ingeniería de Sistemas de Información</Text>
         </View>
 
