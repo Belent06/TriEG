@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
 import { TEAM_PROFILE } from '@/data/team-info';
+import React from 'react';
+import { Image, StyleSheet, Text, View } from 'react-native';
 
 /**
  * Componente HeroBanner
@@ -18,7 +18,7 @@ export const HeroBanner: React.FC = () => {
         {/* Escudo oficial envuelto en contenedor circular */}
         <View style={styles.badgeWrapper}>
           <Image
-            source={require('@/assets/images/ecuador_logo.png')}
+            source={require('@/assets/images/Escudo_Nacional_de_España.png')}
             style={styles.heroLogo}
             resizeMode="contain"
           />
