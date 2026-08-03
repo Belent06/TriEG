@@ -1,0 +1,253 @@
+================================================================================
+  GUÍA COMPLETA, FLUJO DE EJECUCIÓN Y CHEATSHEET DE UI PARA EXAMEN EN REACT NATIVE (EXPO GO)
+================================================================================
+Proyecto: MiTri App (Plantilla de Examen Móvil)
+Estudiante: María Belén Tashiguano Ramírez
+Materia: Dispositivos Móviles (10mo Semestre - Ingeniería de Sistemas de Información)
+Tecnología: React Native v0.81.5 + Expo SDK 54 + Expo Router v6 + TypeScript
+
+--------------------------------------------------------------------------------
+1. EXPLICACIÓN DETALLADA DEL FLUJO DE EJECUCIÓN
+--------------------------------------------------------------------------------
+El flujo de ejecución desde el código fuente hasta la representación nativa en el dispositivo mediante Expo Go sigue los siguientes 5 pasos fundamentales:
+
+1. Punto de Entrada (Entrypoint):
+   - Al ejecutar `npx expo start`, Expo lee la propiedad `"main": "expo-router/entry"` configurada en `package.json`.
+   - Este punto de entrada inicializa la estructura de rutas basada en archivos de Expo Router, escaneando el directorio `/app`.
+   - Carga en primer lugar `/app/_layout.tsx` (Layout Raíz), donde se inicializan las configuraciones globales, el tema visual (ThemeProvider) y se renderiza el `CustomSplashScreen`.
+
+2. Proceso del Metro Bundler (Empaquetador de JavaScript):
+   - Metro Bundler es el servidor de desarrollo de React Native que compila y empaqueta el código JavaScript/TypeScript.
+   - Lee todos los módulos importados (componentes, imágenes, estilos) y los transforma en un único archivo ejecutable optimizado (Bundle JavaScript en formato JSON/JS).
+   - Utiliza Babel para transpilar sintaxis moderna de ES6+/TypeScript y JSX a JavaScript compatible con el motor ejecutable.
+
+3. Comunicación y Transmisión HTTP / WebSocket:
+   - Metro levanta un servidor HTTP en el puerto local (por defecto `http://localhost:8081` o mediante IP local `192.168.x.x`).
+   - Cuando el usuario escanea el código QR desde la aplicación Expo Go en su dispositivo móvil, Expo Go establece una conexión WebSocket y descarga el Bundle de JS compilado desde Metro.
+
+4. Motor de Ejecución en Expo Go (Hermes Engine):
+   - La aplicación cliente Expo Go recibe el paquete JavaScript y lo ejecuta utilizando el motor ejecutable Hermes (o JavaScriptCore en iOS).
+   - Hermes interpreta el código JS, gestiona el árbol de componentes (Virtual DOM) y calcula el estado de la aplicación.
+
+5. Puente Nativo (React Native Bridge / Fabric) y Renderizado UI:
+   - El motor de JS comunica las instrucciones UI al puente de React Native (Fabric / JSI).
+   - Cada componente de React Native (como `<View>`, `<Text>`, `<Image>`, `<FlatList>`) se convierte directamente en una vista nativa real del sistema operativo:
+     * `<View>` -> `android.view.ViewGroup` en Android / `UIView` en iOS.
+     * `<Text>` -> `android.widget.TextView` en Android / `UILabel` en iOS.
+     * `<TextInput>` -> `android.widget.EditText` en Android / `UITextField` en iOS.
+   - Esto garantiza un rendimiento 100% nativo y fluido en Expo Go.
+
+
+--------------------------------------------------------------------------------
+2. MAPA DE CARPETAS Y DISTRIBUCIÓN DE ARCHIVOS
+--------------------------------------------------------------------------------
+La arquitectura del proyecto está estructurada de manera modular y escalable en la raíz y subcarpetas:
+
+/ (Raíz del proyecto)
+ ├── app.json                       -> Configuración oficial de la app Expo (nombre, ícono, splash screen, esquemas).
+ ├── package.json                   -> Dependencias del proyecto, scripts de ejecución y entrypoint.
+ ├── tsconfig.json                  -> Configuración del compilador TypeScript y alias de rutas (@/).
+ └── GUIA_Y_ESTRUCTURA_PROYECTO.txt  -> Documento oficial de guía, flujo y cheatsheet para examen.
+
+/app (Rutas y Pantallas - Expo Router)
+ ├── _layout.tsx                    -> Layout Raíz: Maneja el CustomSplashScreen inicial y el Stack principal.
+ ├── modal.tsx                      -> Pantalla de Modal secundaria independiente.
+ └── (tabs)/                        -> Grupo de pestañas inferiores (Bottom Tabs Navigation).
+      ├── _layout.tsx               -> Configuración visual y opciones de la barra de pestañas (4 pestañas).
+      ├── index.tsx                 -> Pestaña 1: HOME (Vista principal autocontenida: Bienvenida + Bandera y Tarjeta Argentina).
+      ├── espana.tsx                -> Pestaña 2: ESPAÑA (Bandera, DT Luis de la Fuente, Lista de Jugadores).
+      ├── examen.tsx                -> Pestaña 3: EXAMEN UI (Muestrario interactivo completo de componentes UI).
+      └── explore.tsx               -> Pestaña 4: ACERCA DE (Perfil desarrollador María Belén Tashiguano y espacio de video).
+
+/components (Componentes de Interfaz de Usuario)
+ ├── custom-splash-screen.tsx       -> Pantalla de carga inicial animada con temporizador de 3.5s y botón de salto.
+ ├── haptic-tab.tsx                 -> Botón de pestaña con respuesta táctil háptica (Haptic Feedback).
+ ├── themed-text.tsx                -> Componente wrapper de Text con soporte de temas claro/oscuro.
+ ├── themed-view.tsx                -> Componente wrapper de View con soporte de temas claro/oscuro.
+ └── ui/
+     ├── icon-symbol.tsx            -> Mapeo e iconografía unificada (MaterialIcons / SF Symbols).
+     └── icon-symbol.ios.tsx        -> Soporte específico de iconos nativos para dispositivos iOS.
+
+/constants (Constantes y Estilos Globales)
+ └── theme.ts                       -> Paleta de colores globales y tokens del tema visual.
+
+/data (Capa de Datos Centralizada - Single Source of Truth)
+ └── team-info.ts                   -> Origen único de datos e interfaces TypeScript para toda la app (Ecuador, Argentina, España).
+
+/assets (Recursos Multimedia)
+ └── images/                        -> Escudos e imágenes (.png) (Ecuador, España, logos de la app).
+
+/hooks (Custom Hooks)
+ ├── use-color-scheme.ts            -> Hook para detectar el esquema de color del sistema (claro/oscuro).
+ ├── use-color-scheme.web.ts        -> Adaptación del hook para entornos Web.
+ └── use-theme-color.ts             -> Hook para obtener colores según el tema activo.
+
+
+--------------------------------------------------------------------------------
+3. CHEATSHEET RÁPIDO DE COMPONENTES UI REACT NATIVE Y EXPO (PARA EL EXAMEN)
+--------------------------------------------------------------------------------
+A continuación se presenta la lista de componentes nativos clave, sus propiedades (props) más importantes y ejemplos rápidos para modificar código en el examen:
+
+1. <View> (Contenedor de Layout)
+   - Uso: Div nativo para agrupar y organizar otros componentes mediante Flexbox.
+   - Props clave:
+     * `style`: Objeto de estilos (`{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }`).
+   - Ejemplo Rápido:
+     <View style={{ flex: 1, padding: 16, backgroundColor: '#FFFFFF' }}> ... </View>
+
+2. <Text> (Renderizado de Texto)
+   - Uso: Único componente permitido para mostrar texto en pantalla.
+   - Props clave:
+     * `numberOfLines`: Límite máximo de líneas antes de truncar con `...`.
+     * `ellipsizeMode`: Posición del truncado (`'tail'`, `'head'`, `'middle'`).
+   - Ejemplo Rápido:
+     <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#002B49' }}>Texto Nactivo</Text>
+
+3. <TextInput> (Entrada de Texto y Formulario)
+   - Uso: Campo para capturar datos ingresados por el usuario.
+   - Props clave:
+     * `value`: Valor del estado vinculado.
+     * `onChangeText`: Callback ejecutado al cambiar el texto `(text) => setValor(text)`.
+     * `placeholder`: Texto de sugerencia inicial.
+     * `placeholderTextColor`: Color del placeholder.
+     * `keyboardType`: Tipo de teclado (`'default'`, `'email-address'`, `'numeric'`, `'phone-pad'`).
+     * `secureTextEntry`: `true` para ocultar caracteres (contraseñas).
+     * `autoCapitalize`: `'none'`, `'sentences'`, `'words'`, `'characters'`.
+   - Ejemplo Rápido:
+     <TextInput value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" placeholder="Correo" />
+
+4. <Switch> (Interruptor Booleano)
+   - Uso: Conmutador de encendido/apagado (Toggle).
+   - Props clave:
+     * `value`: Estado booleano (`true` / `false`).
+     * `onValueChange`: Callback ejecutado al alternar `(val) => setEstado(val)`.
+     * `trackColor`: Color de la barra cuando está activo/inactivo (`{ false: '#CBD5E1', true: '#FFD100' }`).
+     * `thumbColor`: Color de la bolita flotante.
+   - Ejemplo Rápido:
+     <Switch value={activo} onValueChange={setActivo} trackColor={{ true: '#002B49' }} />
+
+5. <Pressable> / <TouchableOpacity> (Botones e Interacción)
+   - Uso: Componente táctil universal para ejecutar acciones al presionar.
+   - Props clave:
+     * `onPress`: Callback ejecutado al hacer clic/tap.
+     * `style`: Acepta función de estado `({ pressed }) => [{ opacity: pressed ? 0.6 : 1 }]`.
+   - Ejemplo Rápido:
+     <Pressable style={({ pressed }) => [{ opacity: pressed ? 0.7 : 1 }]} onPress={hacerAlgo}>
+       <Text>Presionar</Text>
+     </Pressable>
+
+6. <FlatList> (Lista Dinámica Eficiente)
+   - Uso: Renderiza listas largas de elementos de forma optimizada cargando solo lo visible.
+   - Props clave:
+     * `data`: Array de elementos a renderizar.
+     * `keyExtractor`: Función que retorna un ID único por elemento `(item) => item.id`.
+     * `renderItem`: Función que retorna el JSX de cada elemento `({ item, index }) => <Text>{item.nombre}</Text>`.
+     * `ItemSeparatorComponent`: Componente divisor entre elementos.
+     * `ListEmptyComponent`: Componente a mostrar cuando el array está vacío.
+   - Ejemplo Rápido:
+     <FlatList data={items} keyExtractor={i => i.id} renderItem={({ item }) => <Text>{item.name}</Text>} />
+
+7. <SectionList> (Lista Agrupada por Secciones)
+   - Uso: Muestra datos jerárquicos agrupados con cabeceras de sección.
+   - Props clave:
+     * `sections`: Array de secciones `[{ title: 'Grupo A', data: [...] }]`.
+     * `renderSectionHeader`: JSX para las cabeceras `({ section: { title } }) => <Text>{title}</Text>`.
+     * `renderItem`: JSX para cada ítem dentro de la sección.
+   - Ejemplo Rápido:
+     <SectionList sections={datosSecciones} renderSectionHeader={({section}) => <Text>{section.title}</Text>} renderItem={({item}) => <Text>{item.nombre}</Text>} />
+
+8. <ScrollView> (Contenedor con Desplazamiento)
+   - Uso: Permite desplazar vertical u horizontalmente componentes que sobrepasan el tamaño de pantalla.
+   - Props clave:
+     * `horizontal`: `true` para desplazamiento horizontal.
+     * `showsVerticalScrollIndicator`: `false` para ocultar la barra de scroll vertical.
+     * `showsHorizontalScrollIndicator`: `false` para ocultar la barra horizontal.
+   - Ejemplo Rápido:
+     <ScrollView horizontal showsHorizontalScrollIndicator={false}> ... </ScrollView>
+
+9. <Modal> (Ventana Emergente Flotante)
+   - Uso: Muestra una vista emergente sobre la pantalla actual.
+   - Props clave:
+     * `visible`: Estado booleano que controla si se muestra o se oculta.
+     * `transparent`: `true` para permitir que el fondo sea translúcido.
+     * `animationType`: `'slide'`, `'fade'`, `'none'`.
+     * `onRequestClose`: Callback cuando el usuario presiona el botón atrás en Android.
+   - Ejemplo Rápido:
+     <Modal visible={modalVisible} transparent={true} animationType="slide">
+       <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center' }}>
+         <Text>Contenido del Modal</Text>
+       </View>
+     </Modal>
+
+10. Alert.alert() (Alertas Nativas del Sistema)
+    - Uso: Muestra un cuadro de diálogo nativo de alerta o confirmación.
+    - Sintaxis:
+      Alert.alert(
+        'Título de la Alerta',
+        'Mensaje descriptivo',
+        [
+          { text: 'Cancelar', style: 'cancel' },
+          { text: 'Aceptar', onPress: () => console.log('Aceptado') }
+        ]
+      );
+
+11. <ActivityIndicator> (Indicador de Carga)
+    - Uso: Muestra una animación de spinner de carga.
+    - Props clave:
+      * `size`: Tamaño del spinner (`'small'`, `'large'` o número).
+      * `color`: Color del spinner (código hexadecimal o nombre de color).
+    - Ejemplo Rápido:
+      <ActivityIndicator size="large" color="#002B49" />
+
+12. <Image> (Manejo de Imágenes)
+    - Uso: Muestra imágenes locales (`require(...)`) o remotas (`{ uri: 'http...' }`).
+    - Props clave:
+      * `source`: Origen de la imagen.
+      * `resizeMode`: Ajuste (`'contain'`, `'cover'`, `'stretch'`, `'center'`).
+      * `onLoadStart` / `onLoadEnd` / `onError`: Eventos de ciclo de vida de la imagen.
+    - Ejemplo Rápido:
+      <Image source={require('@/assets/images/ecuador_logo.png')} style={{ width: 100, height: 100 }} resizeMode="contain" />
+
+13. <ImageBackground> (Contenedor con Imagen de Fondo)
+    - Uso: Componente contenedor que aplica una imagen de fondo y permite poner componentes hijos por encima.
+    - Props clave:
+      * `source`: Imagen de fondo.
+      * `imageStyle`: Estilos aplicados exclusivamente a la imagen de fondo (ej: `{ opacity: 0.2 }`).
+    - Ejemplo Rápido:
+      <ImageBackground source={require('@/assets/images/bg.png')} style={{ width: '100%', padding: 20 }}>
+        <Text>Texto sobre la imagen de fondo</Text>
+      </ImageBackground>
+
+
+--------------------------------------------------------------------------------
+4. COMANDOS ÚTILES DE EXPO Y SOLUCIÓN DE ERRORES FÁCIL
+--------------------------------------------------------------------------------
+A continuación los comandos esenciales para el servidor Metro y solución de fallos comunes:
+
+1. Iniciar Servidor de Desarrollo con Caché Limpia:
+   npx expo start -c
+   (La bandera -c limpia la caché del bundler Metro y es la solución #1 cuando los cambios no se reflejan o hay errores de sintaxis antiguos).
+
+2. Iniciar Forzando Conexión por Túnel (Útil en redes Wi-Fi restringidas):
+   npx expo start --tunnel
+
+3. Instalación de Paquetes Compatibles con la Versión de Expo:
+   npx expo install <nombre-paquete>
+   (Asegura instalar versiones probadas y compatibles con el SDK 54 instalado).
+
+4. Verificar Salud del Proyecto y Diagnóstico de Dependencias:
+   npx expo doctor
+
+5. Solución a Errores Típicos en Examen:
+   - Error "Unable to resolve module":
+     Revisar la ruta del import. Ejecutar `npx expo start -c`.
+   - Error "Text strings must be rendered within a <Text> component":
+     Ocurre cuando hay espacios sueltos, comentarios fuera de llaves `{/* */}` o textos directos dentro de una `<View>`. Siempre envolver en `<Text>`.
+   - Error de recarga congelada en Expo Go:
+     Presionar 'r' en la consola donde corre Metro para recargar manualmente, o sacudir el dispositivo móvil y seleccionar "Reload".
+   - Error "Invariant Violation: Element type is invalid":
+     Verificar los exports/imports. Usar `export default` cuando corresponda o `import { Componente }` si es un export nombrado.
+
+================================================================================
+  FIN DE LA GUÍA Y DOCUMENTACIÓN DEL PROYECTO
+================================================================================
