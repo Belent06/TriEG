@@ -20,9 +20,7 @@ import {
 } from 'react-native';
 
 /**
- * Pantalla de Muestrario de Componentes UI para Examen (ExamenScreen)
- * Contiene ejemplos 100% funcionales y comentados de todas las capacidades Frontend/UI de React Native y Expo.
- * Ideal para estudiar, repasar y reutilizar código durante el examen práctico de Dispositivos Móviles.
+ * Pantalla de Muestrario de Componentes UI para Examen
  */
 export default function ExamenScreen() {
   // Dimensiones dinámicas de la pantalla (Layout Responsive)
@@ -136,7 +134,7 @@ export default function ExamenScreen() {
 
         {/* ENCABEZADO DE LA SECCIÓN */}
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>🧪 Muestrario UI Examen</Text>
+          <Text style={styles.headerTitle}>Muestrario</Text>
           <Text style={styles.headerSubtitle}>Componentes Nativos y Ejemplos Prácticos React Native / Expo</Text>
         </View>
 

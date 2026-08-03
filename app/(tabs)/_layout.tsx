@@ -1,19 +1,13 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
 import { HapticTab } from '@/components/haptic-tab';
 import { IconSymbol } from '@/components/ui/icon-symbol';
+import { Tabs } from 'expo-router';
+import React from 'react';
 
 /**
- * Componente TabLayout (Navegación por Pestañas Inferiores)
- * Configura la barra de navegación inferior (Bottom Tabs Navigation) de Expo Router.
- * 
- * Propiedades clave utilizadas:
- * - tabBarActiveTintColor: Color del texto e ícono cuando la pestaña está activa (#FFD100 - Amarillo Tri)
- * - tabBarInactiveTintColor: Color cuando la pestaña no está seleccionada (#94A3B8)
- * - tabBarStyle: Estilos personalizados para la barra de navegación (color de fondo azul marino #002B49, altura y bordes)
- * - headerShown: Define si se muestra el header nativo de la pantalla (false para usar headers personalizados)
- * - tabBarButton: Componente personalizado para manejar la respuesta táctil al presionar una pestaña
+ * Componente TabLayout (Pestañas Inferiores)
+ * Configura la barra de navegación inferior de Expo Router.
  */
+
 export default function TabLayout() {
   return (
     <Tabs
@@ -30,7 +24,7 @@ export default function TabLayout() {
         headerShown: false,
         tabBarButton: HapticTab,
       }}>
-      {/* 1. Pestaña Principal: Home (Inicio con Bienvenida y Tarjeta Argentina) */}
+      {/* 1. Pestaña Home: Bienvenida y Tarjeta Argentina */}
       <Tabs.Screen
         name="index"
         options={{
@@ -38,8 +32,8 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <IconSymbol size={26} name="house.fill" color={color} />,
         }}
       />
-      
-      {/* 2. Pestaña de España: Bandera, DT Luis de la Fuente y Lista de Jugadores */}
+
+      {/* 2. Pestaña de España: Bandera, Datos y Lista de Jugadores */}
       <Tabs.Screen
         name="espana"
         options={{
@@ -48,7 +42,7 @@ export default function TabLayout() {
         }}
       />
 
-      {/* 3. Nueva Pestaña Muestrario de Examen: Colección completa de Componentes Frontend UI */}
+      {/* 3. Colección completa de Componentes Frontend UI */}
       <Tabs.Screen
         name="examen"
         options={{
@@ -57,7 +51,7 @@ export default function TabLayout() {
         }}
       />
 
-      {/* 4. Pestaña Acerca de: Perfil de la estudiante María Belén Tashiguano y espacio de video/foto */}
+      {/* 4. Pestaña Acerca de: Perfil de estudiante*/}
       <Tabs.Screen
         name="explore"
         options={{
