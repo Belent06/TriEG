@@ -1,7 +1,7 @@
-# MiTri 🇪🇨⚽
-### *La Aplicación Móvil Oficial Tributo a la Selección Ecuatoriana de Fútbol*
+# CNE Ecuador 🇪🇨🗳️
+### *Aplicación Móvil Oficial para la Consulta Electoral y Escrutinio en Tiempo Real*
 
-![MiTri Banner](./assets/images/ecuador_logo.png)
+![CNE Ecuador Logo](./assets/images/CNE.png)
 
 [![React Native](https://img.shields.io/badge/React_Native-0.81-blue.svg?logo=react)](https://reactnative.dev/)
 [![Expo SDK](https://img.shields.io/badge/Expo_SDK-v54.0-000000.svg?logo=expo)](https://expo.dev/)
@@ -12,48 +12,47 @@
 
 ## 📌 Descripción General
 
-**MiTri** es una aplicación móvil desarrollada en **React Native** con **Expo Go**, diseñada para los hinchas de la **Selección Ecuatoriana de Fútbol ("La Tri")**. 
+**CNE Ecuador** es una aplicación móvil desarrollada en **React Native** con **Expo SDK 54**, concebida como el portal oficial de información cívica y electoral para las **Elecciones Presidenciales de Ecuador 2026**.
 
-El aplicativo funciona como una enciclopedia interactiva y moderna que rige la trayectoria histórica de Ecuador en las Copas Mundiales de la FIFA (2002, 2006, 2014, 2022 y 2026), ofreciendo estadísticas en tiempo real, récords de leyendas, plantilla de estrellas actuales y detalles de cada partido disputado.
+El aplicativo proporciona a la ciudadanía una experiencia fluida, accesible y moderna para consultar la guía del proceso electoral, ubicar recintos de votación en el Distrito Metropolitano de Quito mediante un **mapa interactivo**, examinar a fondo las propuestas y planes de gobierno de los candidatos a la Presidencia, y dar seguimiento al escrutinio oficial en vivo a través de un **diagrama de barras horizontal**.
 
 ---
 
-## ✨ Características Principal de la Aplicación
+## ✨ Características Principales de la Aplicación
 
-### 1. 🟡 Pantalla de Bienvenida (Splash Screen Interactivo)
-- **Fase 1 (Splash Nativo):** Pantalla de carga nativa del sistema operativo con el escudo oficial sobre fondo amarillo tricolor (`#FFD100`).
-- **Fase 2 (Secuencia Interactiva):** Pantalla de bienvenida animada con el escudo oficial de La Tri, el eslogan *"La Sele de Todos"* y un botón de ingreso con transición suave al menú principal.
+### 1. 🟡 Pantalla de Bienvenida Nativa e Animada (Splash Screen CNE)
+- **Splash Nativo de Expo:** Carga inicial nativa optimizada con el isotipo oficial del CNE sobre fondo azul institucional (`#002B49`).
+- **Secuencia Animada:** Transición fluida a la pantalla de bienvenida con el logotipo corporativo, el lema institucional *"Garantía de la Democracia"* y el banner de estado *"Elecciones 2026 - En Vivo"*.
 
-### 2. 🏆 Historial de Copas del Mundo (Mundiales 2002 - 2026)
-- **Corea-Japón 2002:** Primera clasificación histórica y primera victoria mundialista (1-0 vs Croacia).
-- **Alemania 2006:** Histórico pase a Octavos de Final.
-- **Brasil 2014:** Doblete de Enner Valencia y empate heroico ante Francia en el Maracaná.
-- **Catar 2022:** Triunfo histórico en el partido inaugural del torneo.
-- **Canadá / EE.UU. / México 2026:** Ficha informativa del camino rumbo a la 5ta Copa del Mundo.
+### 2. 📋 Pestaña Home: Guía Electoral & Mapa Interactivo de Quito (`app/(tabs)/index.tsx`)
+- **Resumen Interactivo del Proceso Electoral:** 
+  - Explicación cronológica en 5 pasos (1. Consulta de recinto, 2. Presentación de cédula/pasaporte, 3. Sufragio en biombo, 4. Depósito en urnas, 5. Firma y retiro del certificado).
+  - Información sobre voto obligatorio (18-64 años) y voto facultativo (16-17 años, 65+ años, personas con discapacidad).
+- **Buscador & Filtros por Sectores:**
+  - Buscador predictivo en tiempo real por nombre de recinto, dirección o parroquia.
+  - Filtro por sectores del Distrito Metropolitano de Quito (*Norte, Centro-Norte, Sur, Valles*).
+- **Mapa Interactivo del DMQ:**
+  - Lienzo visual georreferenciado con accidentes geográficos de la ciudad (Volcán Pichincha, Valles, ejes viales).
+  - Marcadores animados (*Pins*) para recintos icónicos (Universidad Central, Colegio Benalcázar, USFQ Cumbayá, UE Quitumbe, Centro de Convenciones Bicentenario, Colegio Técnico Yaruquí).
+  - Ficha detallada por recinto con indicación de Juntas Varones/Mujeres, parroquia y número de electores empadronados.
 
-### 3. 🔍 Modales de Detalle por Mundial
-- Toca cualquier tarjeta mundialista para desplegar una ventana modal con:
-  - Director Técnico al mando.
-  - Resultado global obtenido.
-  - Hito histórico de la edición.
-  - Goleadores ecuatorianos.
-  - Lista de partidos disputados con sus respectivos marcadores.
+### 3. 👥 Pestaña Candidatos: Propuestas & Planes de Gobierno (`app/(tabs)/espana.tsx`)
+- **Perfiles de los Candidatos Presidenciales:**
+  - Ficha completa de los 3 binomios oficiales: **Daniel Noboa Azín** (ADN Lista 52), **Luisa González Alcívar** (RC Lista 5) y **Jan Topic Feraud** (SUMA Lista 23).
+  - Lema de campaña, colores oficiales, lista política y porcentaje de intención de voto.
+- **Desglose de Propuestas por Ejes:**
+  - Propuestas clasificadas por categorías (Seguridad e Inteligencia, Empleo, Salud y Medicinas, Educación Gratuita, Infraestructura Energética, Estado Digital).
+- **Matriz de Comparativa Rápida:**
+  - Cuadro comparativo dinámico para examinar y alternar entre los candidatos con un solo toque.
 
-### 4. ⭐ Récords y Leyendas Históricas
-- Tarjetas con estadísticas emblemáticas de los máximos referentes:
-  - **Enner Valencia:** Máximo goleador histórico (44+ goles) y goleador en Mundiales (6 goles).
-  - **Iván Hurtado:** Jugador con más internacionalidades (168 partidos).
-  - **Agustín Delgado:** Autor del primer gol ecuatoriano en una Copa del Mundo.
-- Ficha técnica institucional (Fundación FEF 1925, Estadio Rodrigo Paz Delgado / Olímpico Atahualpa).
-
-### 5. ⚽ Jugadores Referentes Actuales
-- Listado de la Generación Dorada de La Tri con su número de dorsal, posición y club internacional (Moisés Caicedo, Piero Hincapié, Enner Valencia, Willian Pacho, Kendry Páez).
-
-### 6. 🎨 Simbolismo y Tema Tricolor
-- Sistema de diseño dinámico basado en los colores oficiales:
-  - **Amarillo Tricolor (`#FFD100`):** La riqueza de la tierra y la pasión de la hinchada.
-  - **Azul Marino (`#002B49`):** El Océano Pacífico y la firmeza del equipo.
-  - **Rojo Accent (`#CE1126`):** La garra y el coraje en la cancha.
+### 4. 📊 Pestaña Estadísticas: Escrutinio & Diagrama de Barras (`app/(tabs)/explore.tsx`)
+- **Destacado del Líder del Conteo:**
+  - Tarjeta en tiempo real que resalta al candidato que encabeza la votación y el margen de diferencia con el segundo lugar.
+- **Diagrama de Barras Horizontal:**
+  - Gráfico nativo animado de barras horizontales con el porcentaje y número exacto de votos válidos computados.
+  - Filtros dinámicos de resultados por zona geográfica (*Nacional, Pichincha/Quito, Guayas, Exterior*).
+- **Métricas del Conteo Oficial CNE:**
+  - Indicadores globales de actas escrutadas (98.4%), participación ciudadana (83.7%), ausentismo (16.3%), votos en blanco y votos nulos.
 
 ---
 
@@ -61,61 +60,68 @@ El aplicativo funciona como una enciclopedia interactiva y moderna que rige la t
 
 | Tecnología | Descripción |
 | :--- | :--- |
-| **React Native** | Framework base para el desarrollo móvil multiplataforma (iOS & Android). |
-| **Expo SDK 54** | Ecosistema de desarrollo con soporte para *New Architecture*. |
-| **Expo Router v6** | Sistema de navegación basado en archivos dentro del directorio `app/`. |
-| **TypeScript** | Tipado estático estricto para garantizar un código libre de errores de ejecución. |
-| **Expo Image** | Carga y renderizado optimizado de imágenes vectoriales y recursos visuales. |
-| **StyleSheet API** | Gestión de estilos optimizados y temas globales en `constants/theme.ts`. |
+| **React Native 0.81** | Framework base para el desarrollo móvil multiplataforma (iOS & Android). |
+| **Expo SDK 54** | Ecosistema de desarrollo con *New Architecture* activada. |
+| **Expo Router v6** | Sistema de navegación declarativo basado en archivos (`app/`). |
+| **TypeScript 5.9** | Tipado estático estricto en toda la capa de componentes y modelos. |
+| **React Native Custom Canvas & Styling** | Componentes de UI estilizados nativamente con `StyleSheet` y respuesta háptica. |
 
 ---
 
 ## 🏗️ Arquitectura y Estructura del Código
 
-El proyecto sigue una arquitectura **modular y escalable**, separando la lógica de datos, los estilos globales y los componentes visuales:
+El proyecto sigue una arquitectura **modular y desacoplada**, organizando las rutas en Expo Router y centralizando los datos en una capa única (`data/cne-data.ts`):
 
 ```text
 Tri/
 ├── app/                        # Rutas y páginas de Expo Router
-│   ├── (tabs)/                 # Navegación por pestañas
-│   │   ├── _layout.tsx         # Configuración del Tab Bar inferior
-│   │   ├── index.tsx           # Pantalla de Inicio (Home Screen)
-│   │   └── explore.tsx         # Pantalla Acerca de MiTri
-│   ├── _layout.tsx             # Layout raíz y manejo de Splash Screen
-│   └── modal.tsx               # Modal genérico
+│   ├── (tabs)/                 # Navegación por pestañas inferiores (Tab Bar)
+│   │   ├── _layout.tsx         # Configuración del Tab Bar institucional CNE
+│   │   ├── index.tsx           # Home: Guía de sufragio + Buscador y Mapa de Quito
+│   │   ├── espana.tsx          # Candidatos: Planes de gobierno y propuestas
+│   │   ├── explore.tsx         # Estadísticas: Diagrama de barras horizontal y escrutinio
+│   │   └── examen.tsx          # Componente UI secundario
+│   ├── _layout.tsx             # Root layout con custom Splash Screen CNE
+│   └── modal.tsx               # Componente Modal genérico
 ├── assets/                     # Recursos gráficos e imágenes
-│   └── images/                 # Escudo oficial de La Tri y assets gráficos
+│   └── images/                 # Isotipo oficial CNE.png y assets visuales
 ├── components/                 # Componentes modulares reutilizables
-│   ├── custom-splash-screen.tsx # Pantalla de Bienvenida animada
-│   └── home/                   # Subcomponentes de la pantalla de inicio
-│       ├── hero-banner.tsx     # Encabezado principal y ficha del equipo
-│       ├── nav-tabs.tsx        # Selector de pestañas internas
-│       ├── world-cup-card.tsx  # Tarjeta individual por Mundial
-│       ├── world-cup-modal.tsx # Modal detallado por edición de la FIFA
-│       ├── records-section.tsx # Grilla de récords e hitos
-│       └── players-section.tsx # Listado de jugadores referentes
+│   ├── custom-splash-screen.tsx # Splash Screen animado institucional CNE
+│   ├── haptic-tab.tsx          # Botón con respuesta háptica en navegación
+│   ├── themed-text.tsx         # Tipografía adaptativa a temas
+│   └── themed-view.tsx         # Contenedores adaptativos a temas
 ├── constants/
 │   └── theme.ts                # Sistema de colores corporativos e íconos
 ├── data/
-│   └── team-info.ts            # Base de datos centralizada de La Tri (TypeScript)
-├── App-Planificacion.md        # Documento de análisis y plan de evolución
-├── app.json                    # Configuración de Expo y Splash Screen nativo
+│   └── cne-data.ts             # Data Layer centralizada (Pasos, Recintos Quito, Candidatos, Stats)
+├── app.json                    # Configuración de Expo, New Arch y Splash nativo
 ├── package.json                # Dependencias y scripts de ejecución
 └── tsconfig.json               # Configuración de TypeScript
 ```
 
 ---
 
+## 🎨 Sistema de Diseño Institucional CNE
+
+El sistema visual utiliza la paleta de colores oficial del Estado ecuatoriano y del CNE:
+
+- **Azul Institucional (`#002B49`):** Representa la seriedad, la estabilidad democrática y la solidez institucional.
+- **Amarillo Tricolor (`#FFD100`):** Destaca los acentos principales, títulos de cabecera y botones de acción principal.
+- **Rojo Accent (`#CE1126`):** Utilizado en insignias de estado en vivo y alertas del escrutinio.
+- **Gris de Fondo (`#F8FAFC`):** Proporciona un contraste óptimo para la lectura fluida de propuestas y estadísticas.
+
+---
+
 ## 🚀 Guía de Instalación y Ejecución Local
 
 ### Requisitos Previos
-- Tener instalado **Node.js** (versión LTS recomendada v18 o superior).
+- Tener instalado **Node.js** (versión LTS v18 o superior).
 - Tener instalado **npm** o **yarn**.
 - Tener la app **Expo Go** instalada en tu dispositivo móvil ([Android en Google Play](https://play.google.com/store/apps/details?id=host.exp.exponent) / [iOS en App Store](https://apps.apple.com/app/expo-go/id982107779)).
 
 ### Pasos para Ejecutar:
 
-1. **Clonar o descargar el repositorio:**
+1. **Clonar o navegar al repositorio:**
    ```bash
    git clone https://github.com/Leviathan-19/Tri-Go.git
    cd Tri
@@ -150,9 +156,9 @@ npx tsc --noEmit
 
 ---
 
-## 📦 Compilación y APK para Android
+## 📦 Compilación y Generación de APK para Android
 
-Para generar un archivo instalable APK de forma nativa utilizando Expo Application Services (EAS Build):
+Para generar un paquete ejecutable APK utilizando **EAS Build**:
 
 ```bash
 npx eas build -p android --profile preview
@@ -162,6 +168,6 @@ npx eas build -p android --profile preview
 
 ## 📄 Licencia
 
-Este proyecto se encuentra bajo la Licencia **MIT**. Desarrollado como un tributo educativo y cultural a la **Selección Ecuatoriana de Fútbol**. 
+Este proyecto se distribuye bajo la Licencia **MIT**. Desarrollado como una herramienta de apoyo cívico e informativo para la ciudadanía ecuatoriana 🇪🇨.
 
-¡**¡Sí Se Puede!! 🇪🇨⚽**
+**¡Garantía de la Democracia! 🇪🇨🗳️**
