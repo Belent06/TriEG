@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import { CANDIDATES, GENERAL_STATS, Candidate } from '@/data/cne-data';
+import { CANDIDATES, GENERAL_STATS } from '@/data/cne-data';
 
 /**
  * Pantalla de Estadísticas (ExploreScreen - app/(tabs)/explore.tsx)

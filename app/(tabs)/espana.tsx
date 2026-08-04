@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import { CANDIDATES, Candidate } from '@/data/cne-data';
+import { CANDIDATES } from '@/data/cne-data';
 
 /**
  * Pantalla de Candidatos (espana.tsx -> Tab "Candidatos")
