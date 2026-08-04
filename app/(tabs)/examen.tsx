@@ -560,7 +560,7 @@ export default function ExamenScreen() {
               <Text style={styles.subSectionTitle}>📷 Componente Image Local (Escudo):</Text>
               <View style={styles.imageWrapper}>
                 <Image
-                  source={require('@/assets/images/ecuador_logo.png')}
+                  source={require('@/assets/images/CNE.png')}
                   style={styles.demoImage}
                   resizeMode="contain"
                   onLoadStart={() => setImgLoading(true)}
