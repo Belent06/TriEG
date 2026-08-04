@@ -1,4 +1,3 @@
-import { TEAM_PROFILE } from '@/data/team-info';
 import React, { useEffect, useRef } from 'react';
 import {
   Animated,
@@ -94,24 +93,21 @@ export const CustomSplashScreen: React.FC<CustomSplashScreenProps> = ({ onFinish
         {/* App Title & Slogan */}
         <Animated.View style={[styles.textWrapper, { opacity: fadeAnim }]}>
           <View style={styles.titleBadge}>
-            <Text style={styles.flagEmoji}>🇪🇨</Text>
-            <Text style={styles.appName}>MiTri</Text>
+            <Text style={styles.appName}>Bienvenido/a</Text>
           </View>
-          <Text style={styles.teamSubtitle}>{TEAM_PROFILE.name}</Text>
-          <Text style={styles.slogan}>"{TEAM_PROFILE.slogan}"</Text>
         </Animated.View>
 
         {/* Animated Badge & Action Button */}
         <Animated.View style={[styles.footerWrapper, { opacity: badgeAnim }]}>
           <View style={styles.worldCupPill}>
-            <Text style={styles.worldCupText}>Rumbo al Mundial 2026 ⚽</Text>
+            <Text style={styles.worldCupText}>Cargando...</Text>
           </View>
 
           <TouchableOpacity
             style={styles.enterButton}
             activeOpacity={0.8}
             onPress={onFinish}>
-            <Text style={styles.enterButtonText}>Ingresar a MiTri 🚀</Text>
+            <Text style={styles.enterButtonText}>Ingresar a CNE</Text>
           </TouchableOpacity>
         </Animated.View>
       </View>

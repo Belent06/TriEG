@@ -64,12 +64,7 @@ export const ARGENTINA_DATA: ArgentinaData = {
 
 // Plantilla de Jugadores de España (Usados en la pantalla espana.tsx)
 export const SPAIN_PLAYERS: PlayerData[] = [
-  { id: '1', nombre: 'Lamine Yamal', dorsal: 19, posicion: 'Extremo Derecho', club: 'FC Barcelona' },
-  { id: '2', nombre: 'Rodri Hernández', dorsal: 16, posicion: 'Centrocampista Pivot', club: 'Manchester City' },
-  { id: '3', nombre: 'Dani Olmo', dorsal: 10, posicion: 'Mediocampista Ofensivo', club: 'FC Barcelona' },
-  { id: '4', nombre: 'Nico Williams', dorsal: 17, posicion: 'Extremo Izquierdo', club: 'Athletic Club' },
-  { id: '5', nombre: 'Pedri González', dorsal: 20, posicion: 'Centrocampista', club: 'FC Barcelona' },
-  { id: '6', nombre: 'Dani Carvajal', dorsal: 2, posicion: 'Lateral Derecho', club: 'Real Madrid' },
-  { id: '7', nombre: 'Marc Cucurella', dorsal: 24, posicion: 'Lateral Izquierdo', club: 'Chelsea FC' },
-  { id: '8', nombre: 'Unai Simón', dorsal: 23, posicion: 'Guardameta', club: 'Athletic Club' },
+  { id: '1', nombre: 'Luisa Gonzalez Alcivar', dorsal: 5, posicion: 'Revolucion Ciudadana', club: 'Vamos a Revivir Ecuador' },
+  { id: '2', nombre: 'Daniel Noboa Azín', dorsal: 7, posicion: 'Acción Democrática Nacional', club: 'Un Ecuador Distinto' },
+  { id: '3', nombre: 'Carlos Rabascall Salazar', dorsal: 12, posicion: 'Izquierda Democrática', club: 'Únete a la Pata' },
 ];

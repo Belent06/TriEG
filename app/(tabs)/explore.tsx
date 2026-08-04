@@ -5,8 +5,7 @@ import {
   StatusBar,
   StyleSheet,
   Text,
-  TouchableOpacity,
-  View,
+  View
 } from 'react-native';
 
 /**
@@ -22,50 +21,28 @@ export default function ExploreScreen() {
 
         {/* Encabezado del Perfil */}
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>👤 Perfil del Desarrollador</Text>
-          <Text style={styles.headerSubtitle}>Presentación de la Estudiante</Text>
+          <Text style={styles.headerTitle}>Estadísticas</Text>
+          <Text style={styles.headerSubtitle}>¿Quién va ganando?</Text>
         </View>
 
         {/* Tarjeta del Perfil */}
         <View style={styles.profileCard}>
 
-          {/* Espacio Circular para Video de Presentación */}
-          <View style={styles.videoSectionWrapper}>
-            <TouchableOpacity style={styles.videoCircleContainer} activeOpacity={0.85}>
-              <View style={styles.videoInnerCircle}>
-                <Text style={styles.playIcon}>▶</Text>
-                <Text style={styles.videoLabel}>Video</Text>
-              </View>
-            </TouchableOpacity>
-            <Text style={styles.videoInstructions}>🎥 Video de presentación</Text>
-          </View>
-
           {/* Datos Personales y Académicos de la Desarrolladora */}
           <View style={styles.infoDetailsContainer}>
-            <Text style={styles.studentNameTitle}>María Belén Tashiguano Ramírez</Text>
+            <Text style={styles.studentNameTitle}>Daniel Noboa</Text>
 
             <View style={styles.profileRow}>
-              <Text style={styles.profileLabel}>📚 Materia:</Text>
-              <Text style={styles.profileValue}>Dispositivos Móviles</Text>
-            </View>
-
-            <View style={styles.profileRow}>
-              <Text style={styles.profileLabel}>🎓 Carrera:</Text>
-              <Text style={styles.profileValue}>Ingeniería de Sistemas de Información</Text>
-            </View>
-
-            <View style={styles.profileRow}>
-              <Text style={styles.profileLabel}>🗓️ Nivel / Semestre:</Text>
-              <Text style={styles.profileValue}>Décimo Semestre (10mo)</Text>
+              <Text style={styles.profileLabel}>%:</Text>
+              <Text style={styles.profileValue}>45.7</Text>
             </View>
           </View>
-        </View>
 
-        {/* Pie de Página */}
-        <View style={styles.footer}>
-          <Text style={styles.footerText}>Desarrollado para Dispositivos Móviles 📱</Text>
-          <Text style={styles.footerSub}>10mo Semestre • Ingeniería de Sistemas de Información</Text>
-        </View>
+          {/* Pie de Página */}
+          <View style={styles.footer}>
+            <Text style={styles.footerText}>Desarrollado para Dispositivos Móviles 📱</Text>
+            <Text style={styles.footerSub}>10mo Semestre • Ingeniería de Sistemas de Información</Text>
+          </View>
 
       </ScrollView>
     </SafeAreaView>

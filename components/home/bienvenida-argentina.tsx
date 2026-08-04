@@ -9,43 +9,13 @@ export const WelcomeArgentinaCard: React.FC = () => {
     <View style={styles.container}>
       {/* SECCIÓN 1: BIENVENIDA */}
       <View style={styles.welcomeCard}>
-        <Text style={styles.welcomeTitle}>👋 ¡Bienvenida, Belén!</Text>
+        <Text style={styles.welcomeTitle}>Resumen del Proceso Electoral</Text>
         <Text style={styles.welcomeBody}>
-          Aplicación sobre grandes selecciones del fútbol mundial.
+          Dónde votar en Quito?
+          Conulta de Resultados
+          Estadísticas electorales
+          Candidatos y propuestas
         </Text>
-      </View>
-
-      {/* SECCIÓN 2: TARJETA DE SUBCAMPEÓN ARGENTINA */}
-
-      <View style={styles.argentinaCard}>
-        {/* Encabezado con Bandera y Título */}
-        <View style={styles.argentinaHeaderRow}>
-          <Text style={styles.flagEmoji}>🇦🇷</Text>
-          <View style={styles.argentinaTitleBox}>
-            <Text style={styles.argentinaTitle}>Selección Argentina</Text>
-            <View style={styles.subcampeonBadge}>
-              <Text style={styles.subcampeonText}>🥈 Subcampeón Mundial</Text>
-            </View>
-          </View>
-        </View>
-
-        {/* Detalles de la Ficha: DT, Capitán y Final 1-2 */}
-        <View style={styles.argentinaDetailsGrid}>
-          <View style={styles.argDetailItem}>
-            <Text style={styles.argDetailKey}>📋 Director Técnico:</Text>
-            <Text style={styles.argDetailVal}>Lionel Scaloni</Text>
-          </View>
-
-          <View style={styles.argDetailItem}>
-            <Text style={styles.argDetailKey}>👑 Capitán:</Text>
-            <Text style={styles.argDetailVal}>Lionel Messi</Text>
-          </View>
-
-          <View style={styles.argDetailItem}>
-            <Text style={styles.argDetailKey}>⚽ Marcador Final:</Text>
-            <Text style={styles.finalScoreVal}>Final 1 - 2</Text>
-          </View>
-        </View>
       </View>
     </View >
   );
