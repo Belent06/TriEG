@@ -3,9 +3,9 @@ import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 
 /**
- * Componente HeroBanner
- * Muestra el encabezado principal de la aplicación con la marca MiTri,
- * el escudo oficial de la Selección Ecuatoriana de Fútbol y estadísticas rápidas.
+ * Componente HeroBanner (CNE Ecuador)
+ * Muestra el encabezado principal de la aplicación con la marca CNE Ecuador,
+ * el logotipo oficial del Consejo Nacional Electoral y métricas rápidas.
  */
 export const HeroBanner: React.FC = () => {
   return (
@@ -24,10 +24,10 @@ export const HeroBanner: React.FC = () => {
           />
         </View>
 
-        {/* Textos informativos de la marca y selección */}
+        {/* Textos informativos de la marca y CNE */}
         <View style={styles.heroTextContainer}>
           <View style={styles.titleRow}>
-            <Text style={styles.heroTitle}>MiTri</Text>
+            <Text style={styles.heroTitle}>CNE</Text>
             <View style={styles.countryTag}>
               <Text style={styles.countryTagText}>🇪🇨 ECUADOR</Text>
             </View>
@@ -37,21 +37,21 @@ export const HeroBanner: React.FC = () => {
         </View>
       </View>
 
-      {/* Ficha rápida con estadísticas globales de La Tri */}
+      {/* Ficha rápida con estadísticas globales del proceso */}
       <View style={styles.quickStatsRow}>
         <View style={styles.statChip}>
-          <Text style={styles.chipLabel}>Ranking FIFA</Text>
-          <Text style={styles.chipValue}>#{TEAM_PROFILE.fifaRanking}</Text>
+          <Text style={styles.chipLabel}>Proceso</Text>
+          <Text style={styles.chipValue}>Elecciones 2026</Text>
         </View>
         <View style={styles.dividerVertical} />
         <View style={styles.statChip}>
-          <Text style={styles.chipLabel}>Director Técnico</Text>
-          <Text style={styles.chipValue}>{TEAM_PROFILE.currentCoach}</Text>
+          <Text style={styles.chipLabel}>Horario Sufragio</Text>
+          <Text style={styles.chipValue}>07:00 - 17:00</Text>
         </View>
         <View style={styles.dividerVertical} />
         <View style={styles.statChip}>
-          <Text style={styles.chipLabel}>Confederación</Text>
-          <Text style={styles.chipValue}>{TEAM_PROFILE.confederation}</Text>
+          <Text style={styles.chipLabel}>Escrutinio</Text>
+          <Text style={styles.chipValue}>98.4% Actas</Text>
         </View>
       </View>
     </View>

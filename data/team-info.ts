@@ -1,70 +1,12 @@
 /**
- * Archivo de Datos Centralizados (team-info.ts)
- * Funciona como la Capa de Datos (Data Layer / Single Source of Truth) del proyecto.
- * Almacena las interfaces TypeScript y la información estructurada de las selecciones
- * utilizadas en el Splash Screen, la pantalla Home (Ecuador y Argentina) y la pantalla de España.
+ * Single Source of Truth / Compatibilidad (data/team-info.ts)
+ * Re-exporta los datos oficiales del CNE para la aplicación.
  */
 
-// Interface para la Selección Ecuatoriana
-export interface TeamProfile {
-  name: string;
-  nickname: string;
-  federation: string;
-  confederation: string;
-  foundationYear: number;
-  currentCoach: string;
-  fifaRanking: number;
-  mainStadium: string;
-  colors: string[];
-  slogan: string;
-}
+export * from './cne-data';
 
-// Interface para la Selección Argentina
-export interface ArgentinaData {
-  name: string;
-  achievement: string;
-  coach: string;
-  captain: string;
-  finalScore: string;
-  flagDescription: string;
-}
-
-// Interface para los Jugadores de España
-export interface PlayerData {
-  id: string;
-  nombre: string;
-  dorsal: number;
-  posicion: string;
-  club: string;
-}
-
-// Datos de la Selección Ecuatoriana (Usados en Splash Screen y Home)
-export const TEAM_PROFILE: TeamProfile = {
-  name: 'Selección Ecuatoriana de Fútbol',
-  nickname: 'La Tri 🇪🇨',
-  federation: 'FEF (Federación Ecuatoriana de Fútbol)',
-  confederation: 'CONMEBOL',
-  foundationYear: 1925,
-  currentCoach: 'Sebastián Beccacece',
-  fifaRanking: 27,
-  mainStadium: 'Estadio Rodrigo Paz Delgado (Quito)',
-  colors: ['#FFD100', '#002B49', '#CE1126'],
-  slogan: 'La Sele de Todos',
+export const TEAM_PROFILE = {
+  name: 'Consejo Nacional Electoral',
+  nickname: 'CNE Ecuador 🇪🇨',
+  slogan: 'Elecciones Generales Transparentes',
 };
-
-// Datos de la Selección Argentina (Usados en la pantalla Home index.tsx)
-export const ARGENTINA_DATA: ArgentinaData = {
-  name: 'Selección Argentina',
-  achievement: '🥈 Subcampeón Mundial',
-  coach: 'Lionel Scaloni',
-  captain: 'Lionel Messi',
-  finalScore: 'Final 1 - 2',
-  flagDescription: '"La Albiceleste": Simboliza el cielo azul, las nubes blancas y el Sol de Mayo en el centro.',
-};
-
-// Plantilla de Jugadores de España (Usados en la pantalla espana.tsx)
-export const SPAIN_PLAYERS: PlayerData[] = [
-  { id: '1', nombre: 'Luisa Gonzalez Alcivar', dorsal: 5, posicion: 'Revolucion Ciudadana', club: 'Vamos a Revivir Ecuador' },
-  { id: '2', nombre: 'Daniel Noboa Azín', dorsal: 7, posicion: 'Acción Democrática Nacional', club: 'Un Ecuador Distinto' },
-  { id: '3', nombre: 'Carlos Rabascall Salazar', dorsal: 12, posicion: 'Izquierda Democrática', club: 'Únete a la Pata' },
-];

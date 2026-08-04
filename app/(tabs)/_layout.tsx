@@ -4,27 +4,27 @@ import { Tabs } from 'expo-router';
 import React from 'react';
 
 /**
- * Componente TabLayout (Pestañas Inferiores)
- * Configura la barra de navegación inferior de Expo Router.
+ * Componente TabLayout (Pestañas Inferiores - CNE Ecuador)
+ * Configura la barra de navegación inferior de Expo Router con el estilo CNE Ecuador.
  */
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: '#FFD100',
+        tabBarActiveTintColor: '#FFD100', // Amarillo CNE / Ecuador
         tabBarInactiveTintColor: '#94A3B8',
         tabBarStyle: {
-          backgroundColor: '#002B49',
-          borderTopColor: 'rgba(255, 209, 0, 0.2)',
-          height: 62,
+          backgroundColor: '#002B49', // Azul Institucional CNE
+          borderTopColor: 'rgba(255, 209, 0, 0.25)',
+          height: 64,
           paddingBottom: 8,
           paddingTop: 6,
         },
         headerShown: false,
         tabBarButton: HapticTab,
       }}>
-      {/* 1. Pestaña Home: Bienvenida y Tarjeta Argentina */}
+      {/* 1. Pestaña Home: Bienvenida CNE, Resumen Proceso y Dónde Votar en Quito (Mapa) */}
       <Tabs.Screen
         name="index"
         options={{
@@ -33,16 +33,16 @@ export default function TabLayout() {
         }}
       />
 
-      {/* 2. Pestaña de España: Bandera, Datos y Lista de Jugadores */}
+      {/* 2. Pestaña Candidatos: 3 Candidatos Presidenciales y Propuestas */}
       <Tabs.Screen
         name="espana"
         options={{
           title: 'Candidatos',
-          tabBarIcon: ({ color }) => <IconSymbol size={26} name="flag.fill" color={color} />,
+          tabBarIcon: ({ color }) => <IconSymbol size={26} name="person.3.fill" color={color} />,
         }}
       />
 
-      {/* 3. Colección completa de Componentes Frontend UI */}
+      {/* 3. Componente Examen UI (Oculto) */}
       <Tabs.Screen
         name="examen"
         options={{
@@ -52,15 +52,14 @@ export default function TabLayout() {
         }}
       />
 
-      {/* 4. Pestaña Acerca de: Perfil de estudiante*/}
+      {/* 4. Pestaña Estadísticas: Diagrama de barras horizontal (Quién va ganando) */}
       <Tabs.Screen
         name="explore"
         options={{
           title: 'Estadísticas',
-          tabBarIcon: ({ color }) => <IconSymbol size={26} name="info.circle.fill" color={color} />,
+          tabBarIcon: ({ color }) => <IconSymbol size={26} name="chart.bar.fill" color={color} />,
         }}
       />
     </Tabs>
   );
 }
-
